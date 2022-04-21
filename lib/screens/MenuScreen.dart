@@ -1,3 +1,4 @@
+import 'package:cvconnect/components/AvatarWidget.dart';
 import 'package:cvconnect/components/TitleText1.dart';
 import 'package:flutter/material.dart';
 import '../components/ButtonWidget.dart';
@@ -117,18 +118,8 @@ class MenuScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: 80.0,
-                width: 80.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(urlImage),
-                    fit: BoxFit.fill,
-                  ),
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(25.67)),
-                ),
-              ),
+              AvatarWidget(
+                  height: 80, width: 80, urlImage: urlImage, radius: 25.67),
               const SizedBox(
                 height: 16,
               ),
