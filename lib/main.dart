@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'screens/NotificationScreen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'helpers/ChangeLanguage.dart';
 import 'screens/MenuScreen.dart';
 import 'screens/HomeScreen.dart';
 import 'screens/ReportScreen.dart';
@@ -18,7 +20,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'CV_Connect',
+      localizationsDelegates: [
+        CustomLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('vi', ''),
+      ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
