@@ -1,8 +1,12 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 
-class DateBar extends StatelessWidget {
-  DateBar({Key? key}): super(key: key);
+class DateBar extends StatefulWidget {
+  @override
+  DateBarState createState() => DateBarState();
+}
+
+class DateBarState extends State<DateBar> {
 
   @override
   Widget build(BuildContext context) {
