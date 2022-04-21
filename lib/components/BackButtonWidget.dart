@@ -5,7 +5,7 @@ class BackButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    /* return Container(
       width: 44,
       height: 44,
       child: const Center(
@@ -14,10 +14,16 @@ class BackButtonWidget extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.all(Radius.circular(16)),
+        border: Border.all(color: Colors.black),
       ),
+    ); */
+
+    return Icon(
+      Icons.arrow_back,
+      color: Colors.black,
     );
   }
 }

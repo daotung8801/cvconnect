@@ -1,3 +1,4 @@
+import 'package:cvconnect/components/BackButtonWidget.dart';
 import 'package:cvconnect/components/TitleText1.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,8 @@ class SmallHeaderWidget extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: Icon(
-        Icons.arrow_back,
-        color: Colors.black,
-      ),
+      leading: const BackButtonWidget(),
+      leadingWidth: 72,
       centerTitle: true,
       title: Row(
         mainAxisSize: MainAxisSize.min,
