@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'screens/MenuScreen.dart';
+import 'screens/NotificationScreen.dart';
 import 'screens/HomeScreen.dart';
 import 'screens/ReportScreen.dart';
 import 'screens/ScheduleScreen.dart';
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
-    MenuScreen(),
+    NotificationScreen()
   ];
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -57,20 +57,20 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_filled),
             label: 'Trang chủ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
+            icon: Icon(Icons.calendar_today_rounded),
             label: 'Đặt lịch',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.file_open),
+            icon: Icon(Icons.web_outlined),
             label: 'Hồ sơ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu_open),
-            label: 'Khác',
+            icon: Icon(Icons.notifications),
+            label: 'Thông báo',
           ),
         ],
       ));
