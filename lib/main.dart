@@ -1,3 +1,5 @@
+import 'package:cvconnect/screens/authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'helpers/ChangeLanguage.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -51,8 +53,13 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
-    MenuScreen(),
+    MenuScreen(signOut: () {
+      FirebaseAuth.instance.signOut();
+      ApplicationLoginState.loggedOut;
+      print("loggedOut");
+    },),
   ];
+
   @override
   Widget build(BuildContext context) => Scaffold(
       body: IndexedStack(

@@ -1,5 +1,6 @@
 import 'package:cvconnect/components/AvatarWidget.dart';
 import 'package:cvconnect/components/TitleText1.dart';
+import 'package:cvconnect/screens/authentication.dart';
 import 'package:flutter/material.dart';
 import '../components/ButtonWidget.dart';
 import 'AccountSettingsScreen.dart';
@@ -8,6 +9,10 @@ import 'UserScreen.dart';
 
 class MenuScreen extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
+  final void Function() signOut;
+
+  MenuScreen({Key? key, required this.signOut}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final name = 'Nguyen Thai';
@@ -18,12 +23,12 @@ class MenuScreen extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           buildHeader(
-            urlImage: urlImage,
-            name: name,
-            job: job,
-            onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                UserScreen(name: name, urlImage: urlImage)))),
+              urlImage: urlImage,
+              name: name,
+              job: job,
+              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      UserScreen(name: name, urlImage: urlImage)))),
           buildMenuItem(
             icon: Icons.settings,
             text: 'Cài đặt tài khoản',
@@ -47,7 +52,7 @@ class MenuScreen extends StatelessWidget {
           ButtonWidget(
             icon: Icons.logout,
             text: 'Đăng xuất',
-            onClicked: () {},
+            onClicked: signOut,
           ),
         ],
       ),
