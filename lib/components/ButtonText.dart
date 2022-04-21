@@ -30,8 +30,7 @@ class ButtonText extends StatelessWidget {
       child: RaisedButton(
         onPressed: () {
           if (this.screenName == 'CreateSchedule') {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ScheduleScreen()));
+            Navigator.pop(context);
           }
         },
         child: TitleText1(
