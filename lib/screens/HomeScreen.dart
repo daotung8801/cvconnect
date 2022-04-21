@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 100),
               child: AvatarWidget(
-                  height: 56,
+                  height: 58,
                   width: 60,
                   urlImage: 'assets/images/header_icon.png',
                   radius: 18),
