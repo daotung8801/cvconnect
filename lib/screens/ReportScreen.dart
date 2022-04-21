@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../components/TitleText1.dart';
+
 class ReportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
@@ -10,10 +12,17 @@ class ReportScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text(
-            'Hồ sơ',
-            style: TextStyle(fontSize: 30, color: Colors.black),
-          ),
+            title: Padding(
+              padding: EdgeInsets.only(left: 28, top: 25),
+              child: TitleText1(
+                  text: 'Hồ sơ',
+                  fontFamily: 'Nunito Sans',
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  r: 37,
+                  g: 49,
+                  b: 65),
+            ),
         ),
         body: SafeArea(
             minimum:
