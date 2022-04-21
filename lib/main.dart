@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/MedicineSearchScreen.dart';
 import 'screens/MenuScreen.dart';
 import 'screens/HomeScreen.dart';
 import 'screens/ReportScreen.dart';
@@ -36,6 +37,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
+    const MedicineSearchScreen(address: 'Mai Dịch, Hà Nội'),
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
