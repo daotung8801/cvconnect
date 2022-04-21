@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "137254151329",
+    "project_id": "cvconnect-e9ee4",
+    "storage_bucket": "cvconnect-e9ee4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137254151329:android:9db39ef81ab380d57c3ce0",
+        "android_client_info": {
+          "package_name": "com.example.cvconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137254151329-v4c5rp316v29ukuvlnjc7pffd0i981un.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cvconnect",
+            "certificate_hash": "751b5173595a0965d823abdd025661252819ae59"
+          }
+        },
+        {
+          "client_id": "137254151329-966771i2ob2aburr7148lpgnbm6dce41.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHnuVeDYUroYVvFYdZih3SM9-FarHGZcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137254151329-966771i2ob2aburr7148lpgnbm6dce41.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
