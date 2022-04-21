@@ -12,8 +12,8 @@ class BigHeaderWidget extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Align(
-          alignment: Alignment.topLeft,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0, top: 25),
           child: TitleText1(
             text: text,
             fontFamily: 'Nunito Sans',
