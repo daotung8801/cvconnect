@@ -11,7 +11,8 @@ class IconButton2 extends StatelessWidget {
       required this.radius,
       required this.buttonWeight,
       required this.buttonHeight,
-      required this.screenName})
+      required this.screenName,
+      this.onPressed})
       : super(key: key);
 
   String urlImage;
@@ -19,6 +20,7 @@ class IconButton2 extends StatelessWidget {
   double radius;
   double buttonHeight, buttonWeight;
   String screenName;
+  void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
