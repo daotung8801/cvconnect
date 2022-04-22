@@ -14,7 +14,7 @@ class SmallHeaderWidget extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: const BackButtonWidget(),
+      leading: BackButtonWidget(onPressed: () => Navigator.pop(context),),
       leadingWidth: 72,
       centerTitle: true,
       title: Row(

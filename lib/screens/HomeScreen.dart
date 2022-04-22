@@ -4,6 +4,7 @@ import '../components/Appointment.dart';
 import '../components/AvatarWidget.dart';
 import '../components/IconButton2.dart';
 import '../components/TitleText1.dart';
+import 'MedicineSearchScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -150,7 +151,9 @@ class HomeScreen extends StatelessWidget {
                     radius: 20,
                     buttonWeight: 70,
                     buttonHeight: 70,
-                    screenName: 'DoctorScreen'),
+                    screenName: 'DoctorScreen',
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MedicineSearchScreen())),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 20),
