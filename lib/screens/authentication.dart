@@ -53,7 +53,7 @@ class Authentication extends StatelessWidget {
           },
         );
       case ApplicationLoginState.loggedIn:
-        return MyHomePage(title: 'Flutter Demo Home Page',);
+        return const MyHomePage(title: 'Flutter Demo Home Page');
       default:
         return Row(
           children: const [

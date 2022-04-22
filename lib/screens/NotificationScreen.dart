@@ -1,17 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../components/TitleText1.dart';
+
 class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Text(
-            'Thông báo',
-            style: TextStyle(fontSize: 30, color: Colors.black),
-          ),
-        ),
+    appBar: AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      title: Padding(
+        padding: EdgeInsets.only(left: 28, top: 25),
+        child: TitleText1(
+            text: 'Thông báo',
+            fontFamily: 'Nunito Sans',
+            fontSize: 27,
+            fontWeight: FontWeight.bold,
+            r: 37,
+            g: 49,
+            b: 65),
+      ),
+    ),
         body: SafeArea(
             minimum: const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 10),
             child: SingleChildScrollView(
