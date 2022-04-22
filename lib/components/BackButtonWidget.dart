@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BackButtonWidget extends StatelessWidget {
-  const BackButtonWidget({Key? key}) : super(key: key);
+  final void Function() onPressed;
+  const BackButtonWidget({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,12 @@ class BackButtonWidget extends StatelessWidget {
       ),
     ); */
 
-    return Icon(
-      Icons.arrow_back,
-      color: Colors.black,
+    return GestureDetector(
+      child: Icon(
+        Icons.arrow_back,
+        color: Colors.black,
+      ),
+      onTap: onPressed,
     );
   }
 }

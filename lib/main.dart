@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cvconnect/mainReal=)).dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'screens/MedicineSearchScreen.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -59,13 +62,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
+
   final screens = [
-    const MedicineSearchScreen(address: 'Mai Dịch, Hà Nội'),
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
     NotificationScreen()
   ];
+
   @override
   Widget build(BuildContext context) => Scaffold(
       body: IndexedStack(
