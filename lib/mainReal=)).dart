@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cvconnect/objects/Doctor.dart';
+import 'package:cvconnect/objects/DoctorList.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +66,10 @@ class ApplicationState extends ChangeNotifier {
     init();
   }
 
+  StreamSubscription<QuerySnapshot>? _guestBookSubscription;
+
+  List<Doctor> get listDoctors => DoctorList.listDoctors;
+
   Future<void> init() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -75,6 +81,21 @@ class ApplicationState extends ChangeNotifier {
       } else {
         _loginState = ApplicationLoginState.loggedOut;
       }
+
+      _guestBookSubscription = FirebaseFirestore.instance
+          .collection('doctors')
+          .snapshots()
+          .listen((snapshot) {
+        DoctorList.listDoctors = [];
+        for (final document in snapshot.docs) {
+          DoctorList.listDoctors.add(
+            new Doctor(document.id, document.data()['firstname'] + ' ' + document.data()['lastname'], document.data()['specialist'], 100, document.data()['imageUrl'])
+          );
+        }
+        print(DoctorList.listDoctors.length);
+        notifyListeners();
+      });
+
       notifyListeners();
     });
   }

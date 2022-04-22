@@ -4,6 +4,7 @@ import 'package:avatars/avatars.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cvconnect/components/DateBar.dart';
 import 'package:cvconnect/objects/Doctor.dart';
+import 'package:cvconnect/objects/DoctorList.dart';
 import 'package:cvconnect/screens/ScheduleScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,22 +16,14 @@ import '../components/widgets.dart';
 import '../screens/DoctorDetailsScreen.dart';
 
 class IndexSchedule extends Comparable{
-  List<Doctor> listRandomDoctor = [
-    new Doctor(12345, "Trịnh Thị Thu", "Bác sĩ đa khoa", 100, "https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?w=2000"),
-    new Doctor(123456, "Lê Thị Vân", "Bác sĩ tâm lí", 50, "https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?w=2000"),
-    new Doctor(1234567, "Nguyễn Thị Hà", "Bác sĩ nha khoa", 80, "https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg?w=2000"),
-    new Doctor(12345678, "Bùi Văn Đức", "Bác sĩ phụ sản", 200, "https://starboard-media.s3.amazonaws.com/v/thumb-00C-wcCpq-00001.jpg"),
-    new Doctor(123456789, "Trần Văn Đức", "Bác sĩ phổi", 120, "https://media.istockphoto.com/photos/happy-healthcare-practitioner-picture-id138205019?k=20&m=138205019&s=612x612&w=0&h=KpsSMVsplkOqTnAJmOye4y6DcciVYIBe5dYDgYXLVW4="),
-    new Doctor(1234, "Bùi Minh Hoa", "Chuyên gia tư vấn", 20, "https://media.istockphoto.com/photos/portrait-of-male-doctor-in-white-coat-and-stethoscope-standing-in-picture-id1327024466?b=1&k=20&m=1327024466&s=170667a&w=0&h=vcw4Exhv4pkR8fMVLNXhNESaKq1HbYwJ1iElLlQBxI0=")
-  ];
-
-  Doctor doctor = new Doctor(123, "name", "description", 100, "image");
+  Doctor doctor = DoctorList().generateDoctor();
   String problem;
   DateTime selectedDate = DateTime.now();
   TimeOfDay startTime = TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
 
   IndexSchedule({required this.problem, required this.selectedDate, required this.startTime}){
-    doctor = listRandomDoctor.elementAt(Random().nextInt(listRandomDoctor.length));
+    // doctor = DoctorList().generateDoctor();
+    // DoctorList().updateDate(doctor, int.parse(this.selectedDate.day.toString()+this.selectedDate.month.toString()));
   }
 
   String getTimeStringFormat() {
@@ -75,10 +68,6 @@ class ListSchedule extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(height: 500, child: this._buildWidget());
-  }
-
-  void add(IndexSchedule indexSchedule) {
-    listSchedule.add(indexSchedule);
   }
 
   ListView _buildWidget() {
