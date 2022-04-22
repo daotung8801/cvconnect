@@ -1,4 +1,3 @@
-import 'package:cvconnect/components/SearchBar.dart';
 import 'package:cvconnect/screens/DoctorsScreen.dart';
 import 'package:flutter/material.dart';
 import '../components/Appointment.dart';

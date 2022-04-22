@@ -19,12 +19,12 @@ class MenuScreen extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           buildHeader(
-            urlImage: urlImage,
-            name: name,
-            job: job,
-            onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                UserScreen(name: name, urlImage: urlImage)))),
+              urlImage: urlImage,
+              name: name,
+              job: job,
+              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      UserScreen(name: name, urlImage: urlImage)))),
           buildMenuItem(
             icon: Icons.settings,
             text: 'Cài đặt tài khoản',
