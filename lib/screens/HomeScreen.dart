@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../components/Appointment.dart';
 import '../components/AvatarWidget.dart';
 import '../components/IconButton2.dart';
+import '../components/SearchBar.dart';
 import '../components/TitleText1.dart';
 import 'MedicineSearchScreen.dart';
 
