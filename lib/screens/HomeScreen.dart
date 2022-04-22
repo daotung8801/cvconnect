@@ -1,3 +1,4 @@
+import 'package:cvconnect/components/SearchBar.dart';
 import 'package:cvconnect/screens/DoctorsScreen.dart';
 import 'package:flutter/material.dart';
 import '../components/Appointment.dart';
@@ -70,45 +71,7 @@ class HomeScreen extends StatelessWidget {
             Center(
               child: Padding(
                 padding: EdgeInsets.only(top: 5),
-                child: Container(
-                  width: 314,
-                  height: 60,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 20, top: 5),
-                          child: Icon(Icons.search,
-                              size: 25,
-                              color: Color.fromARGB(255, 189, 189, 189)),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 5, top: 5),
-                          child: TitleText1(
-                            text: 'Tìm kiếm dịch vụ',
-                            fontFamily: 'Nunito Sans',
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            r: 189,
-                            g: 189,
-                            b: 189,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 110, top: 5),
-                          child: Icon(Icons.tune,
-                              size: 25, color: Color.fromARGB(255, 14, 16, 18)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color.fromARGB(255, 238, 246, 255),
-                  ),
-                ),
+                child: SearchBar(text: 'Tìm kiếm dịch vụ'),
               ),
             ),
             Padding(
@@ -134,7 +97,6 @@ class HomeScreen extends StatelessWidget {
                   radius: 20,
                   buttonWeight: 70,
                   buttonHeight: 70,
-                  screenName: 'DoctorScreen',
                   onPressed: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => DoctorsScreen())),
                 ),
@@ -149,7 +111,9 @@ class HomeScreen extends StatelessWidget {
                     radius: 20,
                     buttonWeight: 70,
                     buttonHeight: 70,
-                    screenName: 'DoctorScreen'),
+                    onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DoctorsScreen()))
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 20),
@@ -161,7 +125,9 @@ class HomeScreen extends StatelessWidget {
                     radius: 20,
                     buttonWeight: 70,
                     buttonHeight: 70,
-                    screenName: 'DoctorScreen'),
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DoctorsScreen()))
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 20),
@@ -173,7 +139,9 @@ class HomeScreen extends StatelessWidget {
                     radius: 20,
                     buttonWeight: 70,
                     buttonHeight: 70,
-                    screenName: 'DoctorScreen'),
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DoctorsScreen()))
+                ),
               ),
             ]),
             Center(

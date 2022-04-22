@@ -21,9 +21,14 @@ class BackButtonWidget extends StatelessWidget {
       ),
     ); */
 
-    return Icon(
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+    child: Icon(
       Icons.arrow_back,
       color: Colors.black,
+    ),
     );
   }
 }
