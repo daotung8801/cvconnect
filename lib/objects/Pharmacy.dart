@@ -5,7 +5,7 @@ class Pharmacy {
   final int? id;
   final String name;
   final String? description;
-  final double? ratingStar;
+  final double ratingStar;
   final int? numOfReview;
   final String image;
   static final columns = ["id", "name", "description", "ratingStar", "image"];
@@ -70,7 +70,7 @@ class PharmacyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.item.name),
+        title: Text(item.name),
       ),
       body: Center(
         child: Container(
@@ -79,16 +79,16 @@ class PharmacyPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Image.asset("assets/appimages/" + this.item.image),
+                Image.asset("assets/appimages/" + item.image),
                 Expanded(
                     child: Container(
                         padding: EdgeInsets.all(5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text(this.item.name,
+                            Text(item.name,
                                 style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text(this.item.description.toString()),
+                            Text(item.description.toString()),
                             Text(
                                 "Đánh giá: " + this.item.ratingStar.toString()),
                             Text("(" +

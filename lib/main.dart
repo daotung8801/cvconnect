@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cvconnect/screens/DoctorsScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/MedicineSearchScreen.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'helpers/ChangeLanguage.dart';
 import 'screens/MenuScreen.dart';
 import 'screens/HomeScreen.dart';
+import 'screens/PharmacyScreen.dart';
 import 'screens/ReportScreen.dart';
 import 'screens/ScheduleScreen.dart';
 
@@ -60,7 +62,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
-    const MedicineSearchScreen(address: 'Mai Dịch, Hà Nội'),
+    //PharmacyScreen(),
+    MedicineSearchScreen(address: 'Mai Dịch, Hà Nội'),
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),

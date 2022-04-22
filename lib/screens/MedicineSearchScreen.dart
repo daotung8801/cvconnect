@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 
 class MedicineSearchScreen extends StatelessWidget {
   final String address;
-  const MedicineSearchScreen({Key? key, required this.address})
-      : super(key: key);
-
+  MedicineSearchScreen({Key? key, required this.address}) : super(key: key);
+  CollectionReference pharmacy =
+      FirebaseFirestore.instance.collection('pharmacy');
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: SmallHeaderWidget(
