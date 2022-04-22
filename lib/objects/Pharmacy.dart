@@ -1,13 +1,8 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cvconnect/components/ButtonWidget.dart';
 import 'package:cvconnect/components/ImageItemWidget.dart';
-import 'package:cvconnect/mainReal=)).dart';
+import 'package:cvconnect/screens/FindPharmacyScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-
-import '../components/TitleText1.dart';
 
 class Pharmacy {
   final String name;
@@ -46,7 +41,6 @@ class Pharmacy {
         "numOfReview": numOfReview,
         "location": location,
       };
-
 }
 
 class PharmacyBoxList extends StatelessWidget {
@@ -73,7 +67,12 @@ class PharmacyBoxList extends StatelessWidget {
           Text("Chúng tôi sẽ gợi ý tất cả các nhà thuốc hợp lệ",
               style: TextStyle(fontSize: 18)),
           _shareAndUpload(),
-          ButtonWidget(text: "Tiếp tục", onClicked: () {}),
+          ButtonWidget(
+              text: "Tiếp tục",
+              onClicked: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => FindPharmacyScreen(drugs: ['weed', 'usagrass', 'heroin'])))),
           Padding(padding: EdgeInsets.only(bottom: 20))
         ],
       ),
