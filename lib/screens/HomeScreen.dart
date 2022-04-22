@@ -144,15 +144,18 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 20),
                 child: IconButton2(
-                    urlImage: 'assets/images/medicine_icon.png',
-                    r: 250,
-                    g: 240,
-                    b: 219,
-                    radius: 20,
-                    buttonWeight: 70,
-                    buttonHeight: 70,
-                    screenName: 'DoctorScreen',
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MedicineSearchScreen())),
+                  urlImage: 'assets/images/medicine_icon.png',
+                  r: 250,
+                  g: 240,
+                  b: 219,
+                  radius: 20,
+                  buttonWeight: 70,
+                  buttonHeight: 70,
+                  screenName: 'DoctorScreen',
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MedicineSearchScreen())),
                 ),
               ),
               Padding(

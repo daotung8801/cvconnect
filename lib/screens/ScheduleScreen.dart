@@ -1,7 +1,13 @@
+import 'dart:math';
+
 import 'package:cvconnect/components/DateBar.dart';
 import 'package:cvconnect/components/DoctorInfo.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import '../components/InputTextField.dart';
 import '../components/TitleText1.dart';
+import '../objects/Doctor.dart';
+import '../objects/ScheduleIndex.dart';
 import 'CreateSchedule.dart';
 
 class ScheduleScreen extends StatefulWidget {
@@ -10,6 +16,149 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class ScheduleScreenState extends State<ScheduleScreen> {
+  List<Color> colors = [
+    Color.fromARGB(210, 28, 107, 164),
+    Color.fromARGB(220, 224, 159, 31),
+    Color.fromARGB(150, 24, 255, 255)
+  ];
+
+  final problemController = TextEditingController();
+  final passwordController = TextEditingController();
+  List<IndexSchedule> listAccount = <IndexSchedule>[];
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  String _problem = "";
+  static DateTime selectedDate = DateTime.now();
+  TimeOfDay startTime =
+      TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
+
+  void saveSchedule() {
+    listAccount.add(new IndexSchedule(
+        problem: _problem, selectedDate: selectedDate, startTime: startTime));
+    problemController.text = '';
+    passwordController.text = '';
+  }
+
+  Future pickDate(BuildContext context) async {
+    final newDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(DateTime.now().year + 2),
+      builder: (context, child) => Theme(
+        data: ThemeData.light().copyWith(
+          colorScheme:
+              ColorScheme.light(primary: Color.fromARGB(255, 28, 107, 164)),
+        ),
+        child: child as Widget,
+      ),
+    );
+    if (newDate == null) return;
+    setState(() {
+      selectedDate = newDate;
+    });
+  }
+
+  Future pickTime(BuildContext context) async {
+    final initialTime =
+        TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
+    final newTime = await showTimePicker(
+      context: context,
+      initialTime: startTime ?? initialTime,
+    );
+    if (newTime == null) return;
+    setState(() {
+      startTime = newTime;
+    });
+  }
+
+  String getTimeStringFormat() {
+    return '${startTime.hour}:${startTime.minute}';
+  }
+
+  void _onButtonShowModalSheet() {
+    showModalBottomSheet(
+        context: this.context,
+        builder: (context) {
+          return Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(40))),
+            child: SingleChildScrollView(
+                child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(left: 35, right: 35, top: 30),
+                  child: TextField(
+                    decoration: InputDecoration(labelText: "Vấn đề gặp phải"),
+                    controller: problemController,
+                    onChanged: (text) {
+                      _problem = text;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 35, right: 35, top: 30),
+                  child: InputTextField(
+                    hintText: DateFormat.yMd().format(selectedDate),
+                    labelText: 'Chọn ngày',
+                    widget: IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      color: Color.fromARGB(255, 28, 107, 164),
+                      onPressed: () {
+                        pickDate(context);
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 35, right: 35, top: 30),
+                  child: InputTextField(
+                    hintText: getTimeStringFormat(),
+                    labelText: 'Chọn thời gian',
+                    widget: IconButton(
+                      icon: Icon(Icons.access_time_rounded),
+                      color: Color.fromARGB(255, 28, 107, 164),
+                      onPressed: () {
+                        pickTime(context);
+                      },
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Expanded(
+                          child: SizedBox(
+                        child: RaisedButton(
+                            child: Text('Save'),
+                            onPressed: () {
+                              setState(() {
+                                saveSchedule();
+                              });
+                              Navigator.of(context).pop();
+                            }),
+                        height: 50,
+                      )),
+                      Padding(padding: EdgeInsets.only(left: 10)),
+                      Expanded(
+                          child: SizedBox(
+                        child: RaisedButton(
+                            child: Text('Cancel'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            }),
+                        height: 50,
+                      ))
+                    ],
+                  ),
+                )
+              ],
+            )),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -44,100 +193,74 @@ class ScheduleScreenState extends State<ScheduleScreen> {
           toolbarHeight: 80,
           elevation: 0.0,
         ),
+        floatingActionButton: FloatingActionButton(
+          tooltip: 'Add action',
+          child: Icon(Icons.add),
+          onPressed: () {
+            this._onButtonShowModalSheet();
+            _scaffoldKey.currentState?.showSnackBar(
+              SnackBar(
+                content: Text("Success"),
+                duration: Duration(seconds: 3),
+              ),
+            );
+          },
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
         body: ListView(
           scrollDirection: Axis.vertical,
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DateBar(),
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 35),
-              child: TitleText1(
-                  text: '12:00 PM   ------------------------------------------',
-                  fontFamily: 'Nunito Sans',
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  r: 125,
-                  g: 150,
-                  b: 181),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 35, right: 35),
-              child: DoctorInfo(
-                  urlImage:
-                      'https://starboard-media.s3.amazonaws.com/v/thumb-00C-wcCpq-00001.jpg',
-                  imageSize: 70,
-                  time: '12:30 PM',
-                  doctorName: 'Nguyễn Văn Phúc',
-                  faculty: 'Bác sĩ tâm lý',
-                  bigBox: Color.fromARGB(210, 28, 107, 164)),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 35, right: 35),
-              child: TitleText1(
-                  text: '10:00 PM   ------------------------------------------',
-                  fontFamily: 'Nunito Sans',
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  r: 125,
-                  g: 150,
-                  b: 181),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20, left: 35, right: 35),
-              child: DoctorInfo(
-                  urlImage:
-                  'https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?w=2000',
-                  imageSize: 70,
-                  time: '10:25 PM',
-                  doctorName: 'Đinh Thị Mai',
-                  faculty: 'Bác sĩ tim mạch',
-                  bigBox: Color.fromARGB(200, 233, 116, 159)),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 35, right: 35),
-              child: TitleText1(
-                  text: '05:00 PM   ------------------------------------------',
-                  fontFamily: 'Nunito Sans',
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  r: 125,
-                  g: 150,
-                  b: 181),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20, left: 35, right: 35),
-              child: DoctorInfo(
-                  urlImage:
-                  'https://media.istockphoto.com/photos/happy-healthcare-practitioner-picture-id138205019?k=20&m=138205019&s=612x612&w=0&h=KpsSMVsplkOqTnAJmOye4y6DcciVYIBe5dYDgYXLVW4=',
-                  imageSize: 70,
-                  time: '05:20 PM',
-                  doctorName: 'Trần Đức Anh',
-                  faculty: 'Bác sĩ tim mạch',
-                  bigBox: Color.fromARGB(220, 224, 159, 31)),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 35, right: 35),
-              child: TitleText1(
-                  text: '09:00 AM   ------------------------------------------',
-                  fontFamily: 'Nunito Sans',
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  r: 125,
-                  g: 150,
-                  b: 181),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 40),
-              child: DoctorInfo(
-                  urlImage:
-                  'https://media.istockphoto.com/photos/portrait-of-male-doctor-in-white-coat-and-stethoscope-standing-in-picture-id1327024466?b=1&k=20&m=1327024466&s=170667a&w=0&h=vcw4Exhv4pkR8fMVLNXhNESaKq1HbYwJ1iElLlQBxI0=',
-                  imageSize: 70,
-                  time: '09:45 AM',
-                  doctorName: 'Lê Minh Khôi',
-                  faculty: 'Bác sĩ phổi',
-                  bigBox: Color.fromARGB(150, 24, 255, 255)),
-            ),
+            ListSchedule(
+              listSchedule: listAccount,
+            )
           ],
         ),
       );
+
+  Widget _scheduleIndex(
+      String _time, String _name, String _avatar, String _role) {
+    return Container(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 30),
+            child: TitleText1(
+                text: '12:00 PM   ------------------------------------------',
+                fontFamily: 'Nunito Sans',
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                r: 125,
+                g: 150,
+                b: 181),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 30, left: 35, right: 35),
+            child: DoctorInfo(
+                urlImage: _avatar,
+                imageSize: 70,
+                time: _time,
+                doctorName: _name,
+                faculty: _role,
+                bigBox: this.colors.elementAt(Random().nextInt(3))),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _elementDoctor() {
+    return Padding(
+      padding: EdgeInsets.only(top: 20, left: 35, right: 35),
+      child: DoctorInfo(
+          urlImage:
+              'https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?w=2000',
+          imageSize: 70,
+          time: '10:25 PM',
+          doctorName: 'Đinh Thị Mai',
+          faculty: 'Bác sĩ tim mạch',
+          bigBox: Color.fromARGB(200, 233, 116, 159)),
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:cvconnect/components/AvatarWidget.dart';
 import 'package:cvconnect/components/TitleText1.dart';
+import 'package:cvconnect/mainReal=)).dart';
 import 'package:flutter/material.dart';
 import '../components/ButtonWidget.dart';
 import 'AccountSettingsScreen.dart';
@@ -18,12 +19,12 @@ class MenuScreen extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           buildHeader(
-            urlImage: urlImage,
-            name: name,
-            job: job,
-            onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                UserScreen(name: name, urlImage: urlImage)))),
+              urlImage: urlImage,
+              name: name,
+              job: job,
+              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      UserScreen(name: name, urlImage: urlImage)))),
           buildMenuItem(
             icon: Icons.settings,
             text: 'Cài đặt tài khoản',
@@ -47,7 +48,7 @@ class MenuScreen extends StatelessWidget {
           ButtonWidget(
             icon: Icons.logout,
             text: 'Đăng xuất',
-            onClicked: () {},
+            onClicked: () => ApplicationState().signOut(),
           ),
         ],
       ),
