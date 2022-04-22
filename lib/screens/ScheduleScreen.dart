@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:cvconnect/components/DateBar.dart';
 import 'package:cvconnect/components/DoctorInfo.dart';
+import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../components/InputTextField.dart';
@@ -22,18 +22,48 @@ class ScheduleScreenState extends State<ScheduleScreen> {
     Color.fromARGB(150, 24, 255, 255)
   ];
 
+  static int dayPicked = 1;
+  static int monthPicked = 1;
   final problemController = TextEditingController();
-  final passwordController = TextEditingController();
   List<IndexSchedule> listAccount = <IndexSchedule>[];
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   String _problem = "";
   static DateTime selectedDate = DateTime.now();
-  TimeOfDay startTime = TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
+  TimeOfDay startTime =
+      TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
+
+  Widget DateBar() {
+    // TODO: implement build
+    return Container(
+      margin: EdgeInsets.only(left: 35),
+      child: DatePicker(
+        DateTime.now(),
+        height: 84,
+        width: 70,
+        onDateChange: (val){
+          dayPicked = val.day;
+          monthPicked = val.month;
+          print('date changed');
+          setState(() {
+
+          });
+        },
+        initialSelectedDate: DateTime.now(),
+        selectionColor: Color.fromARGB(255, 28, 107, 164),
+        selectedTextColor: Colors.white,
+        dateTextStyle:  TextStyle(
+          fontSize: 20,
+          fontFamily: 'Nunito Sans',
+          fontWeight: FontWeight.w600,
+          color: Color.fromARGB(255, 37, 49, 65),
+        ),
+      ),
+    );
+  }
 
   void saveSchedule() {
-    listAccount.add(new IndexSchedule(problem: _problem, selectedDate: selectedDate, startTime: startTime));
+    listAccount.add(new IndexSchedule(
+        problem: _problem, selectedDate: selectedDate, startTime: startTime));
     problemController.text = '';
-    passwordController.text = '';
   }
 
   Future pickDate(BuildContext context) async {
@@ -45,7 +75,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
       builder: (context, child) => Theme(
         data: ThemeData.light().copyWith(
           colorScheme:
-          ColorScheme.light(primary: Color.fromARGB(255, 28, 107, 164)),
+              ColorScheme.light(primary: Color.fromARGB(255, 28, 107, 164)),
         ),
         child: child as Widget,
       ),
@@ -53,19 +83,23 @@ class ScheduleScreenState extends State<ScheduleScreen> {
     if (newDate == null) return;
     setState(() {
       selectedDate = newDate;
+      Navigator.of(context).pop();
+      _onButtonShowModalSheet();
     });
   }
 
   Future pickTime(BuildContext context) async {
-    final initialTime = TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
+    final initialTime =
+        TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
     final newTime = await showTimePicker(
       context: context,
       initialTime: startTime ?? initialTime,
-
     );
     if (newTime == null) return;
     setState(() {
       startTime = newTime;
+      Navigator.of(context).pop();
+      _onButtonShowModalSheet();
     });
   }
 
@@ -75,82 +109,107 @@ class ScheduleScreenState extends State<ScheduleScreen> {
 
   void _onButtonShowModalSheet() {
     showModalBottomSheet(
+        backgroundColor: Colors.transparent,
         context: this.context,
         builder: (context) {
-          return SingleChildScrollView(
-            child: Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left: 35, right: 35, top: 30),
-                child: TextField(
-                    decoration: InputDecoration(labelText: "Vấn đề gặp phải"),
-                    controller: problemController,
-                    onChanged: (text) {
-                      _problem = text;
-                    },
+          return Container(
+              padding: EdgeInsets.only(left: 30, right: 30, bottom: 30),
+              decoration: BoxDecoration(
+                  color: Color.fromRGBO(232, 236, 244, 1),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+              child: SingleChildScrollView(
+                  child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 35, right: 35, top: 30),
+                    child: TextField(
+                      decoration: InputDecoration(labelText: "Vấn đề gặp phải"),
+                      controller: problemController,
+                      onChanged: (text) {
+                        _problem = text;
+                      },
                     ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 35, right: 35, top: 30),
-                child: InputTextField(
-                  hintText: DateFormat.yMd().format(selectedDate),
-                  labelText: 'Chọn ngày',
-                  widget: IconButton(
-                    icon: Icon(Icons.calendar_today),
-                    color: Color.fromARGB(255, 28, 107, 164),
-                    onPressed: () {
-                      pickDate(context);
-                    },
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 35, right: 35, top: 30),
-                child: InputTextField(
-                  hintText: getTimeStringFormat(),
-                  labelText: 'Chọn thời gian',
-                  widget: IconButton(
-                    icon: Icon(Icons.access_time_rounded),
-                    color: Color.fromARGB(255, 28, 107, 164),
-                    onPressed: () {
-                      pickTime(context);
-                    },
+                  Padding(
+                    padding: EdgeInsets.only(left: 35, right: 35, top: 30),
+                    child: InputTextField(
+                      hintText: DateFormat.yMd().format(selectedDate),
+                      labelText: 'Chọn ngày',
+                      widget: IconButton(
+                        icon: Icon(Icons.calendar_today),
+                        color: Color.fromARGB(255, 28, 107, 164),
+                        onPressed: () {
+                          pickDate(context);
+                        },
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Expanded(
-                        child: SizedBox(
-                      child: RaisedButton(
-                          child: Text('Save'),
-                          onPressed: () {
-                            setState(() {
-                              saveSchedule();
-                            });
-                            Navigator.of(context).pop();
-                          }),
-                      height: 50,
-                    )),
-                    Padding(padding: EdgeInsets.only(left: 10)),
-                    Expanded(
-                        child: SizedBox(
-                      child: RaisedButton(
-                          child: Text('Cancel'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          }),
-                      height: 50,
-                    ))
-                  ],
-                ),
-              )
-            ],
-            )
-          );
+                  Padding(
+                    padding: EdgeInsets.only(left: 35, right: 35, top: 30),
+                    child: InputTextField(
+                      hintText: getTimeStringFormat(),
+                      labelText: 'Chọn thời gian',
+                      widget: IconButton(
+                        icon: Icon(Icons.access_time_rounded),
+                        color: Color.fromARGB(255, 28, 107, 164),
+                        onPressed: () {
+                          pickTime(context);
+                        },
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 50, left: 10, right: 10, bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Expanded(
+                            child: SizedBox(
+                          child: InkWell(
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(32, 108, 164, 1),
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Text(
+                                  "Đặt",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  saveSchedule();
+                                });
+                                Navigator.of(context).pop();
+                              }),
+                          height: 50,
+                        )),
+                        Padding(padding: EdgeInsets.only(left: 10)),
+                        Expanded(
+                            child: SizedBox(
+                              child: InkWell(
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        color: Color.fromRGBO(32, 108, 164, 1),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Text(
+                                      "Hủy",
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white),
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  }),
+                          height: 50,
+                        ))
+                      ],
+                    ),
+                  )
+                ],
+              )));
         });
   }
 
@@ -193,12 +252,6 @@ class ScheduleScreenState extends State<ScheduleScreen> {
           child: Icon(Icons.add),
           onPressed: () {
             this._onButtonShowModalSheet();
-            _scaffoldKey.currentState?.showSnackBar(
-              SnackBar(
-                content: Text("Success"),
-                duration: Duration(seconds: 3),
-              ),
-            );
           },
           backgroundColor: Theme.of(context).primaryColor,
         ),
@@ -213,49 +266,4 @@ class ScheduleScreenState extends State<ScheduleScreen> {
           ],
         ),
       );
-
-  Widget _scheduleIndex(
-      String _time, String _name, String _avatar, String _role) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 30),
-            child: TitleText1(
-                text: '12:00 PM   ------------------------------------------',
-                fontFamily: 'Nunito Sans',
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                r: 125,
-                g: 150,
-                b: 181),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 30, left: 35, right: 35),
-            child: DoctorInfo(
-                urlImage: _avatar,
-                imageSize: 70,
-                time: _time,
-                doctorName: _name,
-                faculty: _role,
-                bigBox: this.colors.elementAt(Random().nextInt(3))),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _elementDoctor() {
-    return Padding(
-      padding: EdgeInsets.only(top: 20, left: 35, right: 35),
-      child: DoctorInfo(
-          urlImage:
-              'https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?w=2000',
-          imageSize: 70,
-          time: '10:25 PM',
-          doctorName: 'Đinh Thị Mai',
-          faculty: 'Bác sĩ tim mạch',
-          bigBox: Color.fromARGB(200, 233, 116, 159)),
-    );
-  }
 }
