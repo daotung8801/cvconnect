@@ -28,12 +28,6 @@ class MedicineSearchScreen extends StatelessWidget {
             Pharmacy item = Pharmacy(123, "Long Chau", "description", 5.0, 'assets/images/doctor_icon.png', 5);
             List<Pharmacy> items = <Pharmacy>[];
             items.add(item);
-            // List<DocumentSnapshot>documents = snapshot.data!.docs;
-            // for(var i = 0; i < documents.length; i++) {
-            //   DocumentSnapshot document = documents[i];
-            //   items.add(Pharmacy.fromMap(document.data() as Map<dynamic, dynamic>));
-            //   print(items.length);
-            // }
             return PharmacyBoxList(items: items);
           } else {
             print('no data');
