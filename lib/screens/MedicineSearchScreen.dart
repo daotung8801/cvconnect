@@ -1,18 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cvconnect/components/BigHeaderWidget.dart';
 import 'package:cvconnect/components/SmallHeaderWidget.dart';
 import 'package:cvconnect/main.dart';
 import 'package:cvconnect/objects/Pharmacy.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import '../mainReal=)).dart';
 
 class MedicineSearchScreen extends StatelessWidget {
-  const MedicineSearchScreen({Key? key}) : super(key: key);
+  const MedicineSearchScreen({Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,26 +32,20 @@ class MedicineSearchScreen extends StatelessWidget {
                         if (snapshot.hasError) print(snapshot.error);
                         if (snapshot.hasData) {
                           print('check ok');
-                          Pharmacy item = Pharmacy(
-                              123,
-                              "Long Chau",
-                              "description",
-                              5.0,
-                              'assets/images/doctor_icon.png',
-                              5);
+                          List<DocumentSnapshot> documents = snapshot.data!.docs;
                           List<Pharmacy> items = <Pharmacy>[];
-                          items.add(item);
-                          // List<DocumentSnapshot>documents = snapshot.data!.docs;
-                          // for(var i = 0; i < documents.length; i++) {
-                          //   DocumentSnapshot document = documents[i];
-                          //   items.add(Pharmacy.fromMap(document.data() as Map<dynamic, dynamic>));
-                          //   print(items.length);
-                          // }
+                          for (var i = 0; i < documents.length; i++) {
+                            //print(documents[i].data().toString());
+                            DocumentSnapshot document = documents[i];
+                            items.add(
+                                Pharmacy.fromMap(document.data() as Map<dynamic, dynamic>));
+                            print(items.first);
+                          }
+                          print(items.length);
                           return PharmacyBoxList(items: items);
                         } else {
                           print('no data');
-                          return const Center(
-                              child: CircularProgressIndicator());
+                          return const Center(child: CircularProgressIndicator());
                         }
                       },
                     ),

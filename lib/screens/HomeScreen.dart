@@ -136,8 +136,9 @@ class HomeScreen extends StatelessWidget {
                   buttonWeight: 70,
                   buttonHeight: 70,
                   screenName: 'DoctorScreen',
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DoctorsScreen())),
+                  /* onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DoctorsScreen())
+                      ), */
                 ),
               ),
               Padding(
@@ -262,19 +263,19 @@ class HomeScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(left: 35, top: 20),
                       child: Appointment(
-                          day1: '12',
-                          day2: 'T3',
-                          time: '09:30 AM',
-                          doctorName: 'Dr. Mim Akhter',
-                          faculty: 'Bác sĩ tâm lý',
-                          smallBox: Color.fromARGB(54, 113, 165, 255),
-                          bigBox: Color.fromARGB(220, 28, 107, 164),
+                        day1: '12',
+                        day2: 'T3',
+                        time: '09:30 AM',
+                        doctorName: 'Dr. Mim Akhter',
+                        faculty: 'Bác sĩ tâm lý',
+                        smallBox: Color.fromARGB(54, 113, 165, 255),
+                        bigBox: Color.fromARGB(220, 28, 107, 164),
                       ),
                     ),
                   ),
                   Center(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 20, right:35, top: 20),
+                      padding: EdgeInsets.only(left: 20, right: 35, top: 20),
                       child: Appointment(
                         day1: '15',
                         day2: 'T4',
