@@ -25,14 +25,15 @@ class MedicineSearchScreen extends StatelessWidget {
           if (snapshot.hasError) print(snapshot.error);
           if(snapshot.hasData) {
             print('check ok');
-            List<DocumentSnapshot>
-            documents = snapshot.data!.docs;
+            Pharmacy item = Pharmacy(123, "Long Chau", "description", 5.0, 'assets/images/doctor_icon.png', 5);
             List<Pharmacy> items = <Pharmacy>[];
-            for(var i = 0; i < documents.length; i++) {
-              DocumentSnapshot document = documents[i];
-              items.add(Pharmacy.fromMap(document.data() as Map<dynamic, dynamic>));
-              print(items.first);
-            }
+            items.add(item);
+            // List<DocumentSnapshot>documents = snapshot.data!.docs;
+            // for(var i = 0; i < documents.length; i++) {
+            //   DocumentSnapshot document = documents[i];
+            //   items.add(Pharmacy.fromMap(document.data() as Map<dynamic, dynamic>));
+            //   print(items.length);
+            // }
             return PharmacyBoxList(items: items);
           } else {
             print('no data');
