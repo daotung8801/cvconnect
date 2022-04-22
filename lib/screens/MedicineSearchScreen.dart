@@ -35,6 +35,7 @@ class MedicineSearchScreen extends StatelessWidget {
                     Pharmacy.fromMap(document.data() as Map<dynamic, dynamic>));
                 print(items.first);
               }
+              print(items.length);
               return PharmacyBoxList(items: items);
             } else {
               print('no data');
