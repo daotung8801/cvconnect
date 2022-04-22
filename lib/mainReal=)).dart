@@ -4,10 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
+import 'helpers/ChangeLanguage.dart';
 import 'screens/authentication.dart';
 import 'components/widgets.dart';
 
@@ -24,16 +26,19 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Firebase Meetup',
+      title: 'CV_Connect',
+      localizationsDelegates: [
+        CustomLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('vi', ''),
+      ],
       theme: ThemeData(
-        buttonTheme: Theme.of(context).buttonTheme.copyWith(
-          highlightColor: Color.fromARGB(255, 35, 111, 87),
-        ),
-        primarySwatch: Colors.teal,
-        textTheme: GoogleFonts.robotoTextTheme(
-          Theme.of(context).textTheme,
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
     );
@@ -92,9 +97,9 @@ class ApplicationState extends ChangeNotifier {
   String? get verificationID => _verificationID;
 
   void verifyPhoneNumber(
-      String phoneNumber,
-      void Function(FirebaseAuthException e) errorCallback,
-      ) {
+    String phoneNumber,
+    void Function(FirebaseAuthException e) errorCallback,
+  ) {
     FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: phoneNumber,
       verificationCompleted: (PhoneAuthCredential credential) async {
@@ -118,10 +123,10 @@ class ApplicationState extends ChangeNotifier {
   }
 
   void signInWithPhoneNumberAndOTP(
-      String verificationID,
-      String otp,
-      void Function(FirebaseAuthException e) errorCallback,
-      ) async {
+    String verificationID,
+    String otp,
+    void Function(FirebaseAuthException e) errorCallback,
+  ) async {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationID, smsCode: otp);
