@@ -1,40 +1,52 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cvconnect/components/ButtonWidget.dart';
 import 'package:cvconnect/components/ImageItemWidget.dart';
+import 'package:cvconnect/mainReal=)).dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../components/TitleText1.dart';
 
 class Pharmacy {
-  final int? id;
   final String name;
   final String? description;
-  final double? ratingStar;
+  final double ratingStar;
   final int? numOfReview;
   final String image;
-  static final columns = ["id", "name", "description", "ratingStar", "image"];
+  final GeoPoint location;
+  static final columns = [
+    "name",
+    "description",
+    "ratingStar",
+    "image",
+    "location"
+  ];
 
-  Pharmacy(this.id, this.name, this.description, this.ratingStar, this.image,
-      this.numOfReview);
+  Pharmacy(this.name, this.description, this.ratingStar, this.image,
+      this.numOfReview, this.location);
 
   factory Pharmacy.fromMap(Map<dynamic, dynamic> data) {
     return Pharmacy(
-      data['id'],
       data['name'],
       data['description'],
       data['ratingStar'],
       data['image'],
       data['numOfReview'],
+      data['location'],
     );
   }
 
   Map<String, dynamic> toMap() => {
-        "id": id,
         "name": name,
         "description": description,
         "ratingStar": ratingStar,
         "image": image,
         "numOfReview": numOfReview,
+        "location": location,
       };
+
 }
 
 class PharmacyBoxList extends StatelessWidget {
@@ -70,18 +82,18 @@ class PharmacyBoxList extends StatelessWidget {
 
   ListView _buildWidgetList() {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: items.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         return Padding(
             padding: EdgeInsets.only(left: 10),
             child: InkWell(
-              child: ImageItemWidget(item: items[0]),
+              child: ImageItemWidget(item: items[index]),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PharmacyPage(item: items[0]),
+                    builder: (context) => PharmacyPage(item: items[index]),
                   ),
                 );
               },
@@ -169,7 +181,7 @@ class PharmacyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.item.name),
+        title: Text(item.name),
       ),
       body: Center(
         child: Container(
@@ -189,9 +201,9 @@ class PharmacyPage extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text(this.item.name,
+                            Text(item.name,
                                 style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text(this.item.description.toString()),
+                            Text(item.description.toString()),
                             Text(
                                 "Đánh giá: " + this.item.ratingStar.toString()),
                             Text("(" +

@@ -1,10 +1,10 @@
-import 'package:cvconnect/components/SearchBar.dart';
 import 'package:cvconnect/screens/DoctorsScreen.dart';
 import 'package:flutter/material.dart';
 import '../components/Appointment.dart';
 import '../components/AvatarWidget.dart';
 import '../components/IconButton2.dart';
 import '../components/TitleText1.dart';
+import 'MedicineSearchScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
