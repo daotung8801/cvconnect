@@ -53,6 +53,8 @@ class ScheduleScreenState extends State<ScheduleScreen> {
     if (newDate == null) return;
     setState(() {
       selectedDate = newDate;
+      Navigator.of(context).pop();
+      _onButtonShowModalSheet();
     });
   }
 
@@ -66,6 +68,8 @@ class ScheduleScreenState extends State<ScheduleScreen> {
     if (newTime == null) return;
     setState(() {
       startTime = newTime;
+      Navigator.of(context).pop();
+      _onButtonShowModalSheet();
     });
   }
 
