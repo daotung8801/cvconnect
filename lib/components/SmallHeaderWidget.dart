@@ -24,8 +24,8 @@ class SmallHeaderWidget extends StatelessWidget with PreferredSizeWidget {
           TitleText1(
               text: text,
               fontFamily: 'Nunito Sans',
-              fontSize: 16,
-              fontWeight: FontWeight.normal,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
               r: 0,
               g: 0,
               b: 0)
@@ -36,5 +36,5 @@ class SmallHeaderWidget extends StatelessWidget with PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(72);
+  Size get preferredSize => const Size.fromHeight(50);
 }

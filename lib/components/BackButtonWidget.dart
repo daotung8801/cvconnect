@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BackButtonWidget extends StatelessWidget {
-  final void Function() onPressed;
-  const BackButtonWidget({Key? key, required this.onPressed}) : super(key: key);
+  const BackButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +22,13 @@ class BackButtonWidget extends StatelessWidget {
     ); */
 
     return GestureDetector(
-      child: Icon(
-        Icons.arrow_back,
-        color: Colors.black,
-      ),
-      onTap: onPressed,
+      onTap: () {
+        Navigator.pop(context);
+      },
+    child: Icon(
+      Icons.arrow_back,
+      color: Colors.black,
+    ),
     );
   }
 }
