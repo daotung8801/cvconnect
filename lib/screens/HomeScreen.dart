@@ -1,3 +1,4 @@
+import 'package:cvconnect/screens/DoctorsScreen.dart';
 import 'package:flutter/material.dart';
 import '../components/Appointment.dart';
 import '../components/AvatarWidget.dart';
@@ -126,14 +127,17 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 33, top: 20),
                 child: IconButton2(
-                    urlImage: 'assets/images/doctor_icon.png',
-                    r: 220,
-                    g: 237,
-                    b: 249,
-                    radius: 20,
-                    buttonWeight: 70,
-                    buttonHeight: 70,
-                    screenName: 'DoctorScreen'),
+                  urlImage: 'assets/images/doctor_icon.png',
+                  r: 220,
+                  g: 237,
+                  b: 249,
+                  radius: 20,
+                  buttonWeight: 70,
+                  buttonHeight: 70,
+                  screenName: 'DoctorScreen',
+                  onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DoctorsScreen())),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 20),
