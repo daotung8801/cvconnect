@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:avatars/avatars.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cvconnect/components/DateBar.dart';
 import 'package:cvconnect/objects/Doctor.dart';
 import 'package:cvconnect/screens/ScheduleScreen.dart';
@@ -9,6 +11,8 @@ import 'package:flutter/scheduler.dart';
 
 import '../components/DoctorInfo.dart';
 import '../components/TitleText1.dart';
+import '../components/widgets.dart';
+import '../screens/DoctorDetailsScreen.dart';
 
 class IndexSchedule extends Comparable{
   List<Doctor> listRandomDoctor = [
@@ -78,11 +82,11 @@ class ListSchedule extends StatelessWidget {
   }
 
   ListView _buildWidget() {
-    List<IndexSchedule> tmp = listSchedule.where((element) => element.selectedDate.day == ScheduleScreenState.dayPicked).toList();
+    List<IndexSchedule> tmp = listSchedule.where((element) => element.selectedDate.day == ScheduleScreenState.dayPicked
+    && element.selectedDate.month == ScheduleScreenState.monthPicked).toList();
     return ListView.builder(
         itemCount: tmp.length,
         itemBuilder: (context, index) {
-          print('build 111');
           tmp.sort();
           return Container(
             child: Column(
