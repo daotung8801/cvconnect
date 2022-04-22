@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'screens/MedicineSearchScreen.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'screens/NotificationScreen.dart';
@@ -9,8 +12,14 @@ import 'screens/HomeScreen.dart';
 import 'screens/ReportScreen.dart';
 import 'screens/ScheduleScreen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+Stream<QuerySnapshot> fetchProducts() {
+  return FirebaseFirestore.instance.collection('pharmacy').snapshots();
 }
 
 class MyApp extends StatelessWidget {
@@ -51,6 +60,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
+    const MedicineSearchScreen(address: 'Mai Dịch, Hà Nội'),
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
