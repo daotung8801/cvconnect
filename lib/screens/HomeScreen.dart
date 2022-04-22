@@ -136,9 +136,9 @@ class HomeScreen extends StatelessWidget {
                   buttonWeight: 70,
                   buttonHeight: 70,
                   screenName: 'DoctorScreen',
-                  /* onPressed: () => Navigator.push(context,
+                  onPressed: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => DoctorsScreen())
-                      ), */
+                      ),
                 ),
               ),
               Padding(

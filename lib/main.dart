@@ -62,12 +62,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
-    //PharmacyScreen(),
-    MedicineSearchScreen(),
+    // PharmacyScreen(),
+    // MedicineSearchScreen(),
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
-    NotificationScreen()
+    // NotificationScreen(),
+    MenuScreen()
   ];
   @override
   Widget build(BuildContext context) => Scaffold(
