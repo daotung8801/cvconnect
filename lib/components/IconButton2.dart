@@ -29,7 +29,7 @@ class IconButton2 extends StatelessWidget {
       width: this.buttonWeight,
       height: this.buttonHeight,
       child: RaisedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Image.asset(urlImage),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(this.radius)),
