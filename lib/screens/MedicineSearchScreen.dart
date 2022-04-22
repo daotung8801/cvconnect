@@ -8,18 +8,19 @@ import 'package:provider/provider.dart';
 import '../mainReal=)).dart';
 
 class MedicineSearchScreen extends StatelessWidget {
-  const MedicineSearchScreen({Key? key})
-      : super(key: key);
+  const MedicineSearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ApplicationState(),
-      builder: (context, _) => Consumer<ApplicationState>(builder: (context, locationState, _) {
+        create: (context) => ApplicationState(),
+        builder: (context, _) =>
+            Consumer<ApplicationState>(builder: (context, locationState, _) {
               return Scaffold(
                   appBar: SmallHeaderWidget(
-                    text:
-                        '${locationState.placemark?.subAdministrativeArea}, ${locationState.placemark?.administrativeArea}',
+                    text: (locationState.placemark != null
+                        ? '${locationState.placemark?.subAdministrativeArea}, ${locationState.placemark?.administrativeArea}'
+                        : 'Chưa xác định'),
                     icon: const Icon(
                       Icons.location_on,
                       color: Colors.black,
@@ -32,20 +33,22 @@ class MedicineSearchScreen extends StatelessWidget {
                         if (snapshot.hasError) print(snapshot.error);
                         if (snapshot.hasData) {
                           print('check ok');
-                          List<DocumentSnapshot> documents = snapshot.data!.docs;
+                          List<DocumentSnapshot> documents =
+                              snapshot.data!.docs;
                           List<Pharmacy> items = <Pharmacy>[];
                           for (var i = 0; i < documents.length; i++) {
                             //print(documents[i].data().toString());
                             DocumentSnapshot document = documents[i];
-                            items.add(
-                                Pharmacy.fromMap(document.data() as Map<dynamic, dynamic>));
+                            items.add(Pharmacy.fromMap(
+                                document.data() as Map<dynamic, dynamic>));
                             print(items.first);
                           }
                           print(items.length);
                           return PharmacyBoxList(items: items);
                         } else {
                           print('no data');
-                          return const Center(child: CircularProgressIndicator());
+                          return const Center(
+                              child: CircularProgressIndicator());
                         }
                       },
                     ),

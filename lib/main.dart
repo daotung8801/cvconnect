@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
     //PharmacyScreen(),
-    MedicineSearchScreen(address: 'Mai Dịch, Hà Nội'),
+    MedicineSearchScreen(),
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
