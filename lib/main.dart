@@ -1,12 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/MedicineSearchScreen.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'screens/NotificationScreen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'helpers/ChangeLanguage.dart';
 import 'screens/MenuScreen.dart';
 import 'screens/HomeScreen.dart';
 import 'screens/ReportScreen.dart';
 import 'screens/ScheduleScreen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+Stream<QuerySnapshot> fetchProducts() {
+  return FirebaseFirestore.instance.collection('pharmacy').snapshots();
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +29,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'CV_Connect',
+      localizationsDelegates: [
+        CustomLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('vi', ''),
+      ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -41,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
-    MenuScreen(),
+    NotificationScreen()
   ];
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -57,20 +80,20 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_filled),
             label: 'Trang chủ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
+            icon: Icon(Icons.calendar_today_rounded),
             label: 'Đặt lịch',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.file_open),
+            icon: Icon(Icons.web_outlined),
             label: 'Hồ sơ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu_open),
-            label: 'Khác',
+            icon: Icon(Icons.notifications),
+            label: 'Thông báo',
           ),
         ],
       ));
