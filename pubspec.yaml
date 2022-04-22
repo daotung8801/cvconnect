@@ -49,6 +49,9 @@ dependencies:
   path_drawing: ^1.0.0
   date_picker_timeline:
   avatars: ^3.0.2
+  location: ^4.3.0
+  geolocator: ^8.2.0
+  geocoding: ^2.0.4
 
 dev_dependencies:
   flutter_test:
