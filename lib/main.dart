@@ -1,6 +1,10 @@
-import 'package:cvconnect/screens/authentication.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'screens/MedicineSearchScreen.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'screens/NotificationScreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'helpers/ChangeLanguage.dart';
 import 'screens/MenuScreen.dart';
@@ -8,8 +12,14 @@ import 'screens/HomeScreen.dart';
 import 'screens/ReportScreen.dart';
 import 'screens/ScheduleScreen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+Stream<QuerySnapshot> fetchProducts() {
+  return FirebaseFirestore.instance.collection('pharmacy').snapshots();
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +43,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -50,16 +60,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
+    const MedicineSearchScreen(address: 'Mai Dịch, Hà Nội'),
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
-    MenuScreen(signOut: () {
-      FirebaseAuth.instance.signOut();
-      ApplicationLoginState.loggedOut;
-      print("loggedOut");
-    },),
+    NotificationScreen()
   ];
-
   @override
   Widget build(BuildContext context) => Scaffold(
       body: IndexedStack(
@@ -74,20 +80,20 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_filled),
             label: 'Trang chủ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
+            icon: Icon(Icons.calendar_today_rounded),
             label: 'Đặt lịch',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.file_open),
+            icon: Icon(Icons.web_outlined),
             label: 'Hồ sơ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu_open),
-            label: 'Khác',
+            icon: Icon(Icons.notifications),
+            label: 'Thông báo',
           ),
         ],
       ));
