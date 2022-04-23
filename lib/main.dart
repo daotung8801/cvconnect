@@ -5,14 +5,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/ChartScreen.dart';
 import 'screens/MedicineSearchScreen.dart';
-import 'package:flutter_zoom_drawer/config.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'screens/NotificationScreen.dart';
+import 'package:cvconnect/screens/NotificationScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'helpers/ChangeLanguage.dart';
-import 'screens/MenuScreen.dart';
 import 'screens/HomeScreen.dart';
-import 'screens/PharmacyScreen.dart';
 import 'screens/ReportScreen.dart';
 import 'screens/ScheduleScreen.dart';
 
@@ -70,10 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
     MedicineSearchScreen(),
     DoctorsScreen(),
     HomeScreen(),
-    MenuScreen(),
-    //ScheduleScreen(),
+    ScheduleScreen(),
     ReportScreen(),
-    NotificationScreen()
+    NotificationScreen(),
+    // MenuScreen()
   ];
   @override
   Widget build(BuildContext context) => Scaffold(

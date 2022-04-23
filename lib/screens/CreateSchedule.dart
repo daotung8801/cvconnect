@@ -35,10 +35,10 @@ class CreateScheduleState extends State<CreateSchedule> {
   }
 
   Future pickTime(BuildContext context) async {
-    final initialTime = TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
+    // final initialTime = TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
     final newTime = await showTimePicker(
       context: context,
-      initialTime: startTime ?? initialTime,
+      initialTime: startTime,
 
     );
     if (newTime == null) return;

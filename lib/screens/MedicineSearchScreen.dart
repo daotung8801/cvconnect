@@ -36,11 +36,9 @@ class MedicineSearchScreen extends StatelessWidget {
                               snapshot.data!.docs;
                           List<Pharmacy> items = <Pharmacy>[];
                           for (var i = 0; i < documents.length; i++) {
-                            //print(documents[i].data().toString());
                             DocumentSnapshot document = documents[i];
                             items.add(Pharmacy.fromMap(
                                 document.data() as Map<dynamic, dynamic>));
-                            print(items.first);
                             if (locationState.position != null){
                               items.sort((a, b) =>
                                   locationState.getDistance(locationState.position!, a.location).compareTo(locationState.getDistance(locationState.position!, b.location)));

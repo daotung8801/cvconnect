@@ -1,4 +1,5 @@
 import 'package:cvconnect/components/AvatarWidget.dart';
+import 'package:cvconnect/components/SmallHeaderWidget.dart';
 import 'package:cvconnect/components/TitleText1.dart';
 import 'package:cvconnect/mainReal=)).dart';
 import 'package:flutter/material.dart';
@@ -9,48 +10,63 @@ import 'UserScreen.dart';
 
 class MenuScreen extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
+
   @override
   Widget build(BuildContext context) {
     final name = 'Nguyen Thai';
     final job = 'Sinh viên';
     final urlImage = 'assets/images/header_icon.png';
-    return Material(
-      color: Colors.blueAccent,
-      child: ListView(
-        children: <Widget>[
-          buildHeader(
-              urlImage: urlImage,
-              name: name,
-              job: job,
-              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      UserScreen(name: name, urlImage: urlImage)))),
-          buildMenuItem(
-            icon: Icons.settings,
-            text: 'Cài đặt tài khoản',
-            onClicked: () => selectedItem(context, 0),
-          ),
-          buildMenuItem(
-            icon: Icons.privacy_tip,
-            text: 'Chính sách bảo mật',
-            onClicked: () => selectedItem(context, 1),
-          ),
-          buildMenuItem(
-            icon: Icons.payment,
-            text: 'Thiết lập thanh toán',
-            onClicked: () => selectedItem(context, 2),
-          ),
-          buildMenuItem(
-            icon: Icons.contacts,
-            text: 'Liên hệ',
-            onClicked: () => selectedItem(context, 3),
-          ),
-          ButtonWidget(
-            icon: Icons.logout,
-            text: 'Đăng xuất',
-            onClicked: () => ApplicationState().signOut(),
-          ),
-        ],
+    return Scaffold(
+      appBar: SmallHeaderWidget(
+        text: 'Thông tin cá nhân',
+      ),
+      body: Material(
+        color: Colors.blueAccent,
+        child: ListView(
+          children: <Widget>[
+            buildHeader(
+                urlImage: urlImage,
+                name: name,
+                job: job,
+                onClicked: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        UserScreen(name: name, urlImage: urlImage)))),
+            buildMenuItem(
+              icon: Icons.settings,
+              text: 'Cài đặt tài khoản',
+              onClicked: () => selectedItem(context, 0),
+            ),
+            buildMenuItem(
+              icon: Icons.privacy_tip,
+              text: 'Chính sách bảo mật',
+              onClicked: () => selectedItem(context, 1),
+            ),
+            buildMenuItem(
+              icon: Icons.payment,
+              text: 'Thiết lập thanh toán',
+              onClicked: () => selectedItem(context, 2),
+            ),
+            buildMenuItem(
+              icon: Icons.contacts,
+              text: 'Liên hệ',
+              onClicked: () => selectedItem(context, 3),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: ButtonWidget(
+                icon: Icons.logout,
+                text: 'Đăng xuất',
+                onClicked: () {
+                  Navigator.pop(context);
+                  ApplicationState().signOut();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

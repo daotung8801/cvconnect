@@ -9,6 +9,7 @@ import '../components/TitleText1.dart';
 import '../objects/Doctor.dart';
 import '../objects/ScheduleIndex.dart';
 import 'CreateSchedule.dart';
+import 'package:cvconnect/globals.dart' as globals;
 
 class ScheduleScreen extends StatefulWidget {
   @override
@@ -62,6 +63,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
     listAccount.add(new IndexSchedule(
         problem: _problem, selectedDate: selectedDate, startTime: startTime));
     problemController.text = '';
+    globals.listAccount = listAccount;
   }
 
   Future pickDate(BuildContext context) async {
@@ -87,11 +89,11 @@ class ScheduleScreenState extends State<ScheduleScreen> {
   }
 
   Future pickTime(BuildContext context) async {
-    final initialTime =
-        TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
+    // final initialTime =
+    //     TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
     final newTime = await showTimePicker(
       context: context,
-      initialTime: startTime ?? initialTime,
+      initialTime: startTime,
     );
     if (newTime == null) return;
     setState(() {

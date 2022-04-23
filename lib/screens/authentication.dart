@@ -1,3 +1,4 @@
+import 'package:cvconnect/components/TitleText1.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -119,8 +120,17 @@ class _PhoneFormState extends State<PhoneForm> {
       appBar: AppBar(
         centerTitle: true,
         title: Padding(
-            padding: EdgeInsets.only(top: 50),
-            child: Text('Đăng nhập với số điện thoại')),
+          padding: EdgeInsets.only(top: 50),
+          child: TitleText1(
+            text: 'Đăng nhập với số điện thoại',
+            r: 0,
+            g: 0,
+            b: 0,
+            fontSize: 20,
+            fontFamily: 'arial',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Colors.transparent,
         toolbarHeight: 100,
         elevation: 0.0,
@@ -177,7 +187,6 @@ class _PhoneFormState extends State<PhoneForm> {
   }
 }
 
-
 class OTPForm extends StatefulWidget {
   const OTPForm({
     required this.login,
@@ -210,7 +219,15 @@ class _OTPFormState extends State<OTPForm> {
         centerTitle: true,
         title: Padding(
             padding: EdgeInsets.only(top: 50),
-            child: Text('Nhập mã OTP')),
+            child: TitleText1(
+              text: 'Nhập mã OTP',
+              r: 0,
+              g: 0,
+              b: 0,
+              fontSize: 20,
+              fontFamily: 'arial',
+              fontWeight: FontWeight.bold,
+            )),
         backgroundColor: Colors.transparent,
         toolbarHeight: 100,
         elevation: 0.0,
