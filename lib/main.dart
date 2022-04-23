@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cvconnect/screens/NotificationScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -61,8 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
-    // NotificationScreen(),
-    MenuScreen()
+    NotificationScreen(),
+    // MenuScreen()
   ];
   @override
   Widget build(BuildContext context) => Scaffold(

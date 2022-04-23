@@ -9,6 +9,7 @@ import '../components/TitleText1.dart';
 import '../objects/Doctor.dart';
 import '../objects/ScheduleIndex.dart';
 import 'CreateSchedule.dart';
+import 'package:cvconnect/globals.dart' as globals;
 
 class ScheduleScreen extends StatefulWidget {
   @override
@@ -39,18 +40,16 @@ class ScheduleScreenState extends State<ScheduleScreen> {
         DateTime.now(),
         height: 84,
         width: 70,
-        onDateChange: (val){
+        onDateChange: (val) {
           dayPicked = val.day;
           monthPicked = val.month;
           print('date changed');
-          setState(() {
-
-          });
+          setState(() {});
         },
         initialSelectedDate: DateTime.now(),
         selectionColor: Color.fromARGB(255, 28, 107, 164),
         selectedTextColor: Colors.white,
-        dateTextStyle:  TextStyle(
+        dateTextStyle: TextStyle(
           fontSize: 20,
           fontFamily: 'Nunito Sans',
           fontWeight: FontWeight.w600,
@@ -64,6 +63,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
     listAccount.add(new IndexSchedule(
         problem: _problem, selectedDate: selectedDate, startTime: startTime));
     problemController.text = '';
+    globals.listAccount = listAccount;
   }
 
   Future pickDate(BuildContext context) async {
@@ -89,11 +89,11 @@ class ScheduleScreenState extends State<ScheduleScreen> {
   }
 
   Future pickTime(BuildContext context) async {
-    final initialTime =
-        TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
+    // final initialTime =
+    //     TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute);
     final newTime = await showTimePicker(
       context: context,
-      initialTime: startTime ?? initialTime,
+      initialTime: startTime,
     );
     if (newTime == null) return;
     setState(() {
@@ -116,7 +116,9 @@ class ScheduleScreenState extends State<ScheduleScreen> {
               padding: EdgeInsets.only(left: 30, right: 30, bottom: 30),
               decoration: BoxDecoration(
                   color: Color.fromRGBO(232, 236, 244, 1),
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30))),
               child: SingleChildScrollView(
                   child: Column(
                 children: <Widget>[
@@ -159,7 +161,8 @@ class ScheduleScreenState extends State<ScheduleScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 50, left: 10, right: 10, bottom: 10),
+                    padding: EdgeInsets.only(
+                        top: 50, left: 10, right: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
@@ -188,21 +191,21 @@ class ScheduleScreenState extends State<ScheduleScreen> {
                         Padding(padding: EdgeInsets.only(left: 10)),
                         Expanded(
                             child: SizedBox(
-                              child: InkWell(
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        color: Color.fromRGBO(32, 108, 164, 1),
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Text(
-                                      "Hủy",
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  }),
+                          child: InkWell(
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(32, 108, 164, 1),
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Text(
+                                  "Hủy",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              }),
                           height: 50,
                         ))
                       ],

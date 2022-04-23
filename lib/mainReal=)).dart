@@ -75,11 +75,6 @@ class ApplicationState extends ChangeNotifier {
     init();
   }
 
-  StreamSubscription<QuerySnapshot>? _guestBookSubscription;
-  List<String> _guestBookMessages = [];
-
-  List<String> get guestBookMessages => _guestBookMessages;
-
   Future<void> init() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -94,21 +89,6 @@ class ApplicationState extends ChangeNotifier {
       } else {
         _loginState = ApplicationLoginState.loggedOut;
       }
-
-      _guestBookSubscription = FirebaseFirestore.instance
-          .collection('doctors')
-          .snapshots()
-          .listen((snapshot) {
-        _guestBookMessages = [];
-        for (final document in snapshot.docs) {
-          _guestBookMessages.add(
-            document.id,
-          );
-        }
-        print(_guestBookMessages);
-        notifyListeners();
-      });
-
       notifyListeners();
     });
   }
@@ -241,6 +221,7 @@ class ApplicationState extends ChangeNotifier {
   }
 
   void signOut() {
+
     FirebaseAuth.instance.signOut();
   }
 }
