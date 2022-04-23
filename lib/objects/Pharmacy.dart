@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cvconnect/components/ButtonWidget.dart';
 import 'package:cvconnect/components/ImageItemWidget.dart';
+import 'package:cvconnect/components/SmallHeaderWidget.dart';
 import 'package:cvconnect/screens/FindPharmacyScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +73,8 @@ class PharmacyBoxList extends StatelessWidget {
               onClicked: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => FindPharmacyScreen(drugs: ['weed', 'usagrass', 'heroin'])))),
+                      builder: (context) => FindPharmacyScreen(
+                          drugs: ['weed', 'usagrass', 'heroin'])))),
           Padding(padding: EdgeInsets.only(bottom: 20))
         ],
       ),
@@ -179,35 +181,44 @@ class PharmacyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(item.name),
+      appBar: SmallHeaderWidget(
+        text: 'Chi tiết',
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(0),
+          padding: EdgeInsets.all(40),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://www.woolha.com/media/2020/03/eevee.png'),
-                  radius: 30,
-                ),
+                Image.network(item.image),
                 Expanded(
                     child: Container(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.symmetric(vertical: 20),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(item.name,
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text(item.description.toString()),
-                            Text(
-                                "Đánh giá: " + this.item.ratingStar.toString()),
-                            Text("(" +
-                                this.item.numOfReview.toString() +
-                                "nhận xét)"),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child: Text(item.name,
+                                  style: Theme.of(context).textTheme.headline6),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child:
+                                  Text('Mô tả: ' + item.description.toString()),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Text("Đánh giá: " +
+                                  this.item.ratingStar.toString()),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Text('Nhận xét: ' +
+                                  this.item.numOfReview.toString()),
+                            ),
                           ],
                         )))
               ]),
