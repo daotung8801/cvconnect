@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+<<<<<<< HEAD
 import 'package:cvconnect/screens/ChatScreen.dart';
+=======
+>>>>>>> f3b8f780cad3dc7c58709c9f58802ae2712cb651
 import 'package:cvconnect/screens/DoctorsScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -63,9 +66,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
+<<<<<<< HEAD
     ChatScreen(),
     //PharmacyScreen(),
     MedicineSearchScreen(),
+=======
+    DoctorsScreen(),
+>>>>>>> f3b8f780cad3dc7c58709c9f58802ae2712cb651
     HomeScreen(),
     MenuScreen(),
     //ScheduleScreen(),

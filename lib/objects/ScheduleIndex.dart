@@ -1,12 +1,18 @@
 import 'dart:math';
 
+import 'package:avatars/avatars.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cvconnect/components/DateBar.dart';
 import 'package:cvconnect/objects/Doctor.dart';
+import 'package:cvconnect/screens/ScheduleScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import '../components/DoctorInfo.dart';
 import '../components/TitleText1.dart';
+import '../components/widgets.dart';
+import '../screens/DoctorDetailsScreen.dart';
 
 class IndexSchedule extends Comparable{
   List<Doctor> listRandomDoctor = [
@@ -76,17 +82,19 @@ class ListSchedule extends StatelessWidget {
   }
 
   ListView _buildWidget() {
+    List<IndexSchedule> tmp = listSchedule.where((element) => element.selectedDate.day == ScheduleScreenState.dayPicked
+    && element.selectedDate.month == ScheduleScreenState.monthPicked).toList();
     return ListView.builder(
-        itemCount: listSchedule.length,
+        itemCount: tmp.length,
         itemBuilder: (context, index) {
-          listSchedule.sort();
+          tmp.sort();
           return Container(
             child: Column(
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 30),
                   child: TitleText1(
-                      text: listSchedule[index].getTimeRound(),
+                      text: tmp[index].getTimeRound(),
                       fontFamily: 'Nunito Sans',
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
@@ -97,11 +105,11 @@ class ListSchedule extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 30, left: 35, right: 35),
                   child: DoctorInfo(
-                      urlImage: listSchedule[index].doctor.image,
+                      urlImage: tmp[index].doctor.image,
                       imageSize: 70,
-                      time: listSchedule[index].getTimeStringFormat(),
-                      doctorName: listSchedule[index].doctor.name,
-                      faculty: listSchedule[index].doctor.description,
+                      time: tmp[index].getTimeStringFormat(),
+                      doctorName: tmp[index].doctor.name,
+                      faculty: tmp[index].doctor.description,
                       bigBox: this.colors.elementAt(index%colors.length)),
                 ),
               ],
