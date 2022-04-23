@@ -23,11 +23,13 @@ class BackButtonWidget extends StatelessWidget {
     ); */
 
     return GestureDetector(
-      child: Icon(
-        Icons.arrow_back,
-        color: Colors.black,
-      ),
-      onTap: onPressed,
+      onTap: () {
+        Navigator.pop(context);
+      },
+    child: Icon(
+      Icons.arrow_back,
+      color: Colors.black,
+    ),
     );
   }
 }

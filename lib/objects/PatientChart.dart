@@ -13,7 +13,8 @@ class PatientChart extends StatelessWidget {
       charts.Series(
           id: "Patient",
           data: data,
-          domainFn: (PatientSeries series, _) => series.month,
+          domainFn: (PatientSeries series, _) =>
+              "Tháng " + series.month.toString(),
           measureFn: (PatientSeries series, _) => series.patients,
           colorFn: (PatientSeries series, _) => series.barColor)
     ];

@@ -31,7 +31,6 @@ class Appointment extends StatelessWidget {
               width: 70,
               height: 100,
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Center(
                     child: Padding(

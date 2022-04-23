@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cvconnect/screens/AddHealthRecord.dart';
+import 'package:cvconnect/screens/ColumnChart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +37,7 @@ class App extends StatelessWidget {
         CustomLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
         const Locale('en', ''),
@@ -77,7 +80,7 @@ class ApplicationState extends ChangeNotifier {
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
-    _placemark = await _determinePosition();
+    _placemark = await _determineAddress();
     notifyListeners();
 
     FirebaseAuth.instance.userChanges().listen((user) {
@@ -106,8 +109,9 @@ class ApplicationState extends ChangeNotifier {
 
   Placemark? get placemark => _placemark;
 
+  Position? position;
 
-  Future<Placemark> _determinePosition() async {
+  Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -141,10 +145,14 @@ class ApplicationState extends ChangeNotifier {
 
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    Position position = await Geolocator.getCurrentPosition();
+    return await Geolocator.getCurrentPosition();
+  }
+
+  Future<Placemark> _determineAddress() async {
+    position = await _determinePosition();
+    notifyListeners();
     List<Placemark> placemarks =
-    await placemarkFromCoordinates(position.latitude, position.longitude);
-    print(placemarks[0]);
+    await placemarkFromCoordinates(position!.latitude, position!.longitude);
     return placemarks[0];
   }
 
@@ -191,6 +199,20 @@ class ApplicationState extends ChangeNotifier {
       print(e);
       errorCallback(e);
     }
+  }
+
+  double getDistance(Position l1, GeoPoint l2) {
+    double lat1 = l1.latitude;
+    double lon1 = l1.longitude;
+    double lat2;
+    double lon2;
+    lat2 = l2.latitude;
+    lon2 = l2.longitude;
+    var p = 0.017453292519943295;
+    var a = 0.5 -
+        cos((lat2 - lat1) * p) / 2 +
+        cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lon2 - lon1) * p)) / 2;
+    return 12742 * asin(sqrt(a));
   }
 
   void cancelLogin() {

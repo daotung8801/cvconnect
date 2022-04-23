@@ -32,7 +32,6 @@ class MedicineSearchScreen extends StatelessWidget {
                       builder: (context, snapshot) {
                         if (snapshot.hasError) print(snapshot.error);
                         if (snapshot.hasData) {
-                          print('check ok');
                           List<DocumentSnapshot> documents =
                               snapshot.data!.docs;
                           List<Pharmacy> items = <Pharmacy>[];
@@ -42,6 +41,10 @@ class MedicineSearchScreen extends StatelessWidget {
                             items.add(Pharmacy.fromMap(
                                 document.data() as Map<dynamic, dynamic>));
                             print(items.first);
+                            if (locationState.position != null){
+                              items.sort((a, b) =>
+                                  locationState.getDistance(locationState.position!, a.location).compareTo(locationState.getDistance(locationState.position!, b.location)));
+                            }
                           }
                           print(items.length);
                           return PharmacyBoxList(items: items);
