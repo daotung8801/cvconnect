@@ -1,4 +1,5 @@
 import 'package:cvconnect/components/AvatarWidget.dart';
+import 'package:cvconnect/components/SmallHeaderWidget.dart';
 import 'package:cvconnect/components/TitleText1.dart';
 import 'package:cvconnect/mainReal=)).dart';
 import 'package:flutter/material.dart';
@@ -14,17 +15,19 @@ class MenuScreen extends StatelessWidget {
     final name = 'Nguyen Thai';
     final job = 'Sinh viên';
     final urlImage = 'assets/images/header_icon.png';
-    return Material(
-      color: Colors.blueAccent,
+    return
+    Scaffold(
+      appBar: SmallHeaderWidget(text: "Thông tin", icon: Icon(Icons.arrow_back_outlined)),
+      body: Material(
+      color: Color.fromRGBO(32,108,164, 1),
       child: ListView(
         children: <Widget>[
           buildHeader(
               urlImage: urlImage,
               name: name,
               job: job,
-              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      UserScreen(name: name, urlImage: urlImage)))),
+            onClicked: () {  },
+              ),
           buildMenuItem(
             icon: Icons.settings,
             text: 'Cài đặt tài khoản',
@@ -52,6 +55,7 @@ class MenuScreen extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 

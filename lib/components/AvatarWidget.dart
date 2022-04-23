@@ -1,4 +1,6 @@
+import 'package:cvconnect/screens/MenuScreen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AvatarWidget extends StatelessWidget {
   final double height;
@@ -16,7 +18,8 @@ class AvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      child: Container(
       height: height,
       width: width,
       decoration: BoxDecoration(
@@ -27,6 +30,8 @@ class AvatarWidget extends StatelessWidget {
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.all(Radius.circular(radius)),
       ),
+      ),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MenuScreen())),
     );
   }
 }
