@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../components/TitleText1.dart';
+import 'ChartScreen.dart';
 
 class NotificationScreen extends StatelessWidget {
   @override
@@ -53,6 +54,20 @@ class NotificationScreen extends StatelessWidget {
                           color: Color.fromRGBO(248, 56, 88, 1)),
                     ),
                   ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChartScreen()));
+                        },
+                        child: index(
+                          "Thống kê",
+                          "Kiểm tra lịch trình hôm nay",
+                          Icon(Icons.bar_chart,
+                              color: Colors.lightGreen),
+                        ),
+                      ),
                   index(
                     "Thuốc",
                     "Kiểm tra lịch trình hôm nay",
@@ -114,7 +129,6 @@ class NotificationScreen extends StatelessWidget {
                 ),
                 subtitle: Text(subtitle,
                     style: TextStyle(fontSize: 15, color: Colors.black45)),
-                onTap: () {},
               )),
         ));
   }

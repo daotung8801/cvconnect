@@ -51,7 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             //Text("Messages"),
             Container(
-                height: 500,
+                height: 400,
                 //child: ShowMessages(),
                 child: SingleChildScrollView(
                   physics: ScrollPhysics(),

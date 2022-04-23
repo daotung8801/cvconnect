@@ -1,3 +1,4 @@
+import 'package:charts_flutter/flutter.dart';
 import 'package:cvconnect/objects/PatientSeries.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/cupertino.dart';
@@ -20,6 +21,11 @@ class PatientChart extends StatelessWidget {
     ];
     return charts.BarChart(
       series,
+      behaviors: [
+        LinePointHighlighter(
+            symbolRenderer: CircleSymbolRenderer()  // add this line in behaviours
+        )
+      ],
       animate: true,
       defaultRenderer: new charts.BarRendererConfig(
         cornerStrategy: const charts.ConstCornerStrategy(10),

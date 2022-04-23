@@ -56,18 +56,17 @@ class ListSchedule extends StatelessWidget {
   List<IndexSchedule> listSchedule = <IndexSchedule>[];
   ListSchedule({required this.listSchedule});
 
-  List<Color> colors = [
+  static List<Color> colors = [
     Color.fromARGB(210, 28, 107, 164),
     Color.fromARGB(220, 224, 159, 31),
-    Color.fromARGB(150, 24, 255, 255),
     Color.fromRGBO(240,124,164, 1),
-    Color.fromRGBO(256,244,220, 1)
+    Color.fromARGB(150, 24, 255, 255)
   ];
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(height: 500, child: this._buildWidget());
+    return Container(height: 800, child: this._buildWidget());
   }
 
   ListView _buildWidget() {
@@ -99,7 +98,7 @@ class ListSchedule extends StatelessWidget {
                       time: tmp[index].getTimeStringFormat(),
                       doctorName: tmp[index].doctor.name,
                       faculty: tmp[index].doctor.description,
-                      bigBox: this.colors.elementAt(index%colors.length)),
+                      bigBox: ListSchedule.colors.elementAt(index%ListSchedule.colors.length)),
                 ),
               ],
             ),

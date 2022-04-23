@@ -149,7 +149,7 @@ class _PhoneFormState extends State<PhoneForm> {
                     child: TextFormField(
                       controller: _controller,
                       decoration: const InputDecoration(
-                        hintText: 'Enter your phone number',
+                        hintText: 'Nhập số điện thoại của bạn',
                       ),
                       keyboardType: TextInputType.phone,
                       validator: (value) {
@@ -172,7 +172,7 @@ class _PhoneFormState extends State<PhoneForm> {
                               widget.callback(_controller.text);
                             }
                           },
-                          child: const Text('NEXT'),
+                          child: const Text('Tiếp tục'),
                         ),
                       ),
                     ],
@@ -272,7 +272,7 @@ class _OTPFormState extends State<OTPForm> {
                               );
                             }
                           },
-                          child: const Text('SIGN IN'),
+                          child: const Text('Đăng nhập'),
                         ),
                         const SizedBox(width: 30),
                       ],
