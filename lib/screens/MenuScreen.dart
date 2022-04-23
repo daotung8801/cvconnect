@@ -13,7 +13,7 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name = 'Nguyen Thai';
+    final name = 'Nguyễn Thái';
     final job = 'Sinh viên';
     final urlImage = 'assets/images/header_icon.png';
     return
@@ -52,7 +52,9 @@ class MenuScreen extends StatelessWidget {
           ButtonWidget(
             icon: Icons.logout,
             text: 'Đăng xuất',
-            onClicked: () => ApplicationState().signOut(),
+            onClicked: () {
+              Navigator.of(context).pop();
+              ApplicationState().signOut();}
           ),
         ],
       ),
@@ -68,7 +70,7 @@ class MenuScreen extends StatelessWidget {
     final color = Colors.black;
     final hoverColor = Colors.white70;
     return Padding(
-        padding: padding.add(EdgeInsets.only(top: 20)),
+        padding: padding.add(EdgeInsets.only(bottom: 20)),
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.white,
@@ -120,19 +122,19 @@ class MenuScreen extends StatelessWidget {
       InkWell(
         onTap: onClicked,
         child: Container(
-          padding: padding.add(const EdgeInsets.only(top: 133, bottom: 20)),
+          padding: padding.add(const EdgeInsets.only(top: 80, bottom: 50)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AvatarWidget(
-                  height: 80, width: 80, urlImage: urlImage, radius: 25.67),
+                  height: 100, width: 100, urlImage: urlImage, radius: 25.67),
               const SizedBox(
                 height: 16,
               ),
               TitleText1(
                   text: name,
                   fontFamily: 'Poppins',
-                  fontSize: 20,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   r: 255,
                   g: 255,
@@ -143,7 +145,7 @@ class MenuScreen extends StatelessWidget {
               TitleText1(
                   text: job,
                   fontFamily: 'Poppins',
-                  fontSize: 13,
+                  fontSize: 20,
                   fontWeight: FontWeight.normal,
                   r: 255,
                   g: 255,

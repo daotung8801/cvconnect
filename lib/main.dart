@@ -95,8 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Hồ sơ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Thông báo',
+            icon: Icon(Icons.more_horiz_outlined),
+            label: 'Tiện ích',
           ),
         ],
       ));

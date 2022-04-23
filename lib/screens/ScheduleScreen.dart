@@ -224,7 +224,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
             child: TitleText1(
                 text: 'Đặt lịch',
                 fontFamily: 'Nunito Sans',
-                fontSize: 27,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 r: 37,
                 g: 49,

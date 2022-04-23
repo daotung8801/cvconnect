@@ -14,9 +14,9 @@ class NotificationScreen extends StatelessWidget {
           title: Padding(
             padding: EdgeInsets.only(left: 28, top: 25),
             child: TitleText1(
-                text: 'Thông báo',
+                text: 'Tiện ích',
                 fontFamily: 'Nunito Sans',
-                fontSize: 27,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 r: 37,
                 g: 49,

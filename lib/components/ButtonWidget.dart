@@ -17,8 +17,9 @@ class ButtonWidget extends StatelessWidget {
     if (icon != null)
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: const Size.fromHeight(50),
-          primary: Color.fromRGBO(32,108,164, 1),
+          minimumSize: const Size.fromHeight(100),
+          primary: Colors.transparent,
+          elevation: 0
         ),
         child: buildContent(),
         onPressed: onClicked,

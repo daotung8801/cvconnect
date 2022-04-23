@@ -16,7 +16,7 @@ class ReportScreen extends StatelessWidget {
               child: TitleText1(
                   text: 'Hồ sơ',
                   fontFamily: 'Nunito Sans',
-                  fontSize: 28,
+                  fontSize: 31,
                   fontWeight: FontWeight.bold,
                   r: 37,
                   g: 49,
