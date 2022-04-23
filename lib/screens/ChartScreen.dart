@@ -36,7 +36,7 @@ class ChartScreen extends StatelessWidget {
             SmallHeaderWidget(text: 'Biểu đồ', icon: Icon(Icons.arrow_back)),
         body: Center(
           child: Padding(
-            padding: EdgeInsets.only(top: 40, bottom: 200),
+            padding: EdgeInsets.only(left: 15, top: 40, bottom: 200),
             child: PatientChart(data: data),
           )
         ));
