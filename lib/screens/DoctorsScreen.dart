@@ -98,10 +98,11 @@ class _LiveDoctorsState extends State<LiveDoctors> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DoctorDetailsScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return DoctorDetailsScreen(
+                    data: data,
+                  );
+                }));
               },
             );
             return ListTile(
@@ -145,71 +146,67 @@ class _PopularDoctorsState extends State<PopularDoctors> {
             Map<String, dynamic> data =
                 document.data()! as Map<String, dynamic>;
             return GestureDetector(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 20),
-                      child: Avatar(
-                        shape: CustomAvatarStyle.borderRadius20(size: 100),
-                        sources: [NetworkSource(data['imageUrl'])],
+              child: Row(mainAxisAlignment: MainAxisAlignment.start, children: <
+                  Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Avatar(
+                    shape: CustomAvatarStyle.borderRadius20(size: 100),
+                    sources: [NetworkSource(data['imageUrl'])],
+                  ),
+                ),
+                // Expanded(
+                Container(
+                  padding: EdgeInsets.only(bottom: 10, left: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                            'Bs. ' + data['firstname'] + ' ' + data['lastname'],
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 22)),
                       ),
-                    ),
-                    // Expanded(
-                    Container(
-                      padding: EdgeInsets.only(bottom: 10, left: 15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                            data['specialist'] + ' ' + data['organization']),
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 25,
+                          ),
                           Padding(
-                            padding: EdgeInsets.only(bottom: 10),
+                            padding: EdgeInsets.only(top: 3),
                             child: Text(
-                                'Bs. ' +
-                                    data['firstname'] +
-                                    ' ' +
-                                    data['lastname'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 22)),
+                              data['rating'].toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: Text(data['specialist'] +
-                                ' ' +
-                                data['organization']),
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 25,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 3),
-                                child: Text(
-                                  data['rating'].toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 3),
-                                child: Text('(' +
-                                    data['nrating'].toString() +
-                                    ' đánh giá)'),
-                              ),
-                            ],
+                            padding: EdgeInsets.only(top: 3),
+                            child: Text('(' +
+                                data['nrating'].toString() +
+                                ' đánh giá)'),
                           ),
                         ],
                       ),
-                    )
-                  ]),
+                    ],
+                  ),
+                )
+              ]),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DoctorDetailsScreen()));
+                        builder: (context) => DoctorDetailsScreen(
+                              data: data,
+                            )));
               },
             );
           }).toList(),
