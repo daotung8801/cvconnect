@@ -38,7 +38,7 @@ class ImageItemWidget extends StatelessWidget with PreferredSizeWidget {
                       height: 92,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(this.item.image),
+                          image: Image.network(this.item.image).image,
                           fit: BoxFit.fill,
                         ),
                         shape: BoxShape.rectangle,
@@ -65,10 +65,15 @@ class ImageItemWidget extends StatelessWidget with PreferredSizeWidget {
                           Padding(
                             padding: EdgeInsets.only(top: 7),
                             child: TitleText1(
-                                text: 'Cách ' + (locationState.position != null
-                                        ? locationState.getDistance(locationState.position!, this.item.location).toStringAsFixed(1)
-                                        : '') +
-                                    ' km',
+                                text: (locationState.position != null
+                                    ? 'Cách ' +
+                                        locationState
+                                            .getDistance(
+                                                locationState.position!,
+                                                this.item.location)
+                                            .toStringAsFixed(1) +
+                                        ' km'
+                                    : ''),
                                 fontFamily: 'Nunito Sans',
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
