@@ -23,19 +23,22 @@ class ButtonWidget extends StatelessWidget {
         onPressed: onClicked,
       );
     else
-      return Center(
-        child: Container(
-          width: 300,
-          height: 50,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: Color.fromRGBO(32,108,164, 1),
-              borderRadius: BorderRadius.circular(8)),
-          child: Text(
-            "Tiếp tục",
-            style: TextStyle(fontSize: 20, color: Colors.white),
+      return GestureDetector(
+        child: Center(
+          child: Container(
+            width: 300,
+            height: 50,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(32,108,164, 1),
+                borderRadius: BorderRadius.circular(8)),
+            child: Text(
+              "Tiếp tục",
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
           ),
         ),
+        onTap: onClicked,
       );
   }
 

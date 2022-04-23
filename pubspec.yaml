@@ -47,8 +47,12 @@ dependencies:
   intl_utils: ^2.6.1
   scoped_model: ^2.0.0-nullsafety.0
   path_drawing: ^1.0.0
+  charts_flutter: ^0.12.0
   date_picker_timeline:
   avatars: ^3.0.2
+  location: ^4.3.0
+  geolocator: ^8.2.0
+  geocoding: ^2.0.4
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +76,7 @@ flutter:
   uses-material-design: true
   assets:
     - "assets/images/"
+    - "assets/pharmacy/"
 
   # To add assets to your application, add an assets section, like this:
 #  assets:
