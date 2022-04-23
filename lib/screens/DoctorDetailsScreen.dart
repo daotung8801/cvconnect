@@ -134,7 +134,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                Center(
                  child: Padding(
                    padding: EdgeInsets.only(top: 150),
-                   child: ButtonText(text: 'Đặt ngay', r: 28, g: 107, b: 64, weight: 200, height: 55, screenName: 'a', radius: 30),
+                   child: ButtonText(text: 'Đặt ngay', r: 28, g: 107, b: 164, weight: 200, height: 55, screenName: 'a', radius: 30),
                  ),
                ),
               ],
