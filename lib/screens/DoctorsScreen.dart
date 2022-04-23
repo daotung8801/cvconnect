@@ -15,7 +15,8 @@ class DoctorsScreen extends StatelessWidget {
     CollectionReference doctors =
         FirebaseFirestore.instance.collection('doctors');
     return Scaffold(
-      appBar: SmallHeaderWidget(text: 'Bác sĩ', icon: Icon(Icons.arrow_back)),
+      appBar:
+          SmallHeaderWidget(text: 'Bác sĩ', icon: Icon(Icons.arrow_back_sharp)),
       body: ListView(
         children: [
           Padding(
@@ -144,42 +145,24 @@ class _PopularDoctorsState extends State<PopularDoctors> {
             Map<String, dynamic> data =
                 document.data()! as Map<String, dynamic>;
             return GestureDetector(
-              child: Row(mainAxisAlignment: MainAxisAlignment.start, children: <
-                  Widget>[
-                Padding(
-                  padding: EdgeInsets.only(bottom: 20),
-                  child: Avatar(
-                    shape: CustomAvatarStyle.borderRadius20(size: 100),
-                    sources: [NetworkSource(data['imageUrl'])],
-                  ),
-                ),
-                // Expanded(
-                Container(
-                  padding: EdgeInsets.only(bottom: 10, left: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                            'Dr. ' + data['firstname'] + ' ' + data['lastname'],
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 22)),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 20),
+                      child: Avatar(
+                        shape: CustomAvatarStyle.borderRadius20(size: 100),
+                        sources: [NetworkSource(data['imageUrl'])],
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                            data['specialist'] + ' ' + data['organization']),
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                            size: 25,
-                          ),
+                    ),
+                    // Expanded(
+                    Container(
+                      padding: EdgeInsets.only(bottom: 10, left: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(top: 3),
+                            padding: EdgeInsets.only(bottom: 10),
                             child: Text(
                                 'Bs. ' +
                                     data['firstname'] +
@@ -189,17 +172,39 @@ class _PopularDoctorsState extends State<PopularDoctors> {
                                     fontWeight: FontWeight.bold, fontSize: 22)),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 3),
-                            child: Text('(' +
-                                data['nrating'].toString() +
-                                ' đánh giá)'),
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: Text(data['specialist'] +
+                                ' ' +
+                                data['organization']),
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 25,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 3),
+                                child: Text(
+                                  data['rating'].toString(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 3),
+                                child: Text('(' +
+                                    data['nrating'].toString() +
+                                    ' đánh giá)'),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                )
-              ]),
+                    )
+                  ]),
               onTap: () {
                 Navigator.push(
                     context,

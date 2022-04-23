@@ -1,15 +1,14 @@
 import 'package:cvconnect/screens/AddHealthRecord.dart';
+import 'package:cvconnect/components/SearchBar.dart';
 import 'package:cvconnect/screens/DoctorsScreen.dart';
-import 'package:cvconnect/screens/FindPharmacyScreen.dart';
-import 'package:cvconnect/screens/MenuScreen.dart';
-import 'package:cvconnect/screens/ScheduleScreen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/Appointment.dart';
 import '../components/AvatarWidget.dart';
 import '../components/IconButton2.dart';
 import '../components/SearchBar.dart';
 import '../components/TitleText1.dart';
+import 'AddHealthRecord.dart';
+import 'FindPharmacyScreen.dart';
 import 'MedicineSearchScreen.dart';
 import 'package:cvconnect/globals.dart' as globals;
 
@@ -63,8 +62,6 @@ class HomeScreen extends StatelessWidget {
                   width: 60,
                   urlImage: 'assets/images/header_icon.png',
                   radius: 18),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MenuScreen())),
             ),
           ),
         ]),

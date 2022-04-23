@@ -21,6 +21,9 @@ class PatientChart extends StatelessWidget {
     return charts.BarChart(
       series,
       animate: true,
+      defaultRenderer: new charts.BarRendererConfig(
+        cornerStrategy: const charts.ConstCornerStrategy(10),
+      ),
     );
   }
 }
