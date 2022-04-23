@@ -1,9 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cvconnect/screens/ChatScreen.dart';
+import 'package:cvconnect/screens/DoctorsScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'screens/ChartScreen.dart';
+import 'screens/MedicineSearchScreen.dart';
+import 'screens/NotificationScreen.dart';
+import 'package:cvconnect/screens/NotificationScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'helpers/ChangeLanguage.dart';
-import 'screens/MenuScreen.dart';
 import 'screens/HomeScreen.dart';
 import 'screens/ReportScreen.dart';
 import 'screens/ScheduleScreen.dart';
@@ -56,13 +63,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
-    // PharmacyScreen(),
-    // MedicineSearchScreen(),
+    ChartScreen(),
+    ChatScreen(),
+    //PharmacyScreen(),
+    MedicineSearchScreen(),
+    DoctorsScreen(),
     HomeScreen(),
     ScheduleScreen(),
     ReportScreen(),
-    // NotificationScreen(),
-    MenuScreen()
+    NotificationScreen(),
+    // MenuScreen()
   ];
   @override
   Widget build(BuildContext context) => Scaffold(

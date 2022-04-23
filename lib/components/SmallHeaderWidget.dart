@@ -11,7 +11,7 @@ class SmallHeaderWidget extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return (icon != null? AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
       leading: BackButtonWidget(),
@@ -31,7 +31,26 @@ class SmallHeaderWidget extends StatelessWidget with PreferredSizeWidget {
               b: 0)
         ],
       ),
-    );
+    ):AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leading: BackButtonWidget(),
+      leadingWidth: 72,
+      centerTitle: true,
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TitleText1(
+              text: text,
+              fontFamily: 'Nunito Sans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              r: 0,
+              g: 0,
+              b: 0)
+        ],
+      ),
+    ));
   }
 
   @override

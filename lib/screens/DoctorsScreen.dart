@@ -20,8 +20,10 @@ class DoctorsScreen extends StatelessWidget {
       body: ListView(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 25, right: 25, top: 20),
-            child: SearchBar(text: 'Tìm kiếm bác sĩ'),
+            padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+            child: Center(
+              child: SearchBar(text: 'Tìm kiếm bác sĩ'),
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 25, top: 20),
@@ -162,7 +164,7 @@ class _PopularDoctorsState extends State<PopularDoctors> {
                           Padding(
                             padding: EdgeInsets.only(bottom: 10),
                             child: Text(
-                                'Dr. ' +
+                                'Bs. ' +
                                     data['firstname'] +
                                     ' ' +
                                     data['lastname'],

@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cvconnect/objects/Doctor.dart';
 import 'package:cvconnect/objects/DoctorList.dart';
 import 'package:cvconnect/screens/AddHealthRecord.dart';
+import 'package:cvconnect/screens/ChartScreen.dart';
 import 'package:cvconnect/screens/ColumnChart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,7 +40,7 @@ class App extends StatelessWidget {
         CustomLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
         const Locale('en', ''),
@@ -48,7 +49,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: ChartScreen(),
     );
   }
 }

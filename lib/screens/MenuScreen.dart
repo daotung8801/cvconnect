@@ -10,6 +10,7 @@ import 'UserScreen.dart';
 
 class MenuScreen extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
+
   @override
   Widget build(BuildContext context) {
     final name = 'Nguyen Thai';
