@@ -85,7 +85,7 @@ class _LivePharmacyState extends State<LivePharmacy> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DoctorDetailsScreen()));
+                        builder: (context) => DoctorDetailsScreen(data: data,)));
               },
             );
             return ListTile(
@@ -176,7 +176,7 @@ class _PopularPharmacyState extends State<PopularPharmacy> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DoctorDetailsScreen()));
+                        builder: (context) => DoctorDetailsScreen(data: data,)));
               },
             );
 
