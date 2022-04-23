@@ -10,23 +10,23 @@ class ChartScreen extends StatelessWidget {
     PatientSeries(
         month: 1,
         patients: 100,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue)),
+        barColor: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 28, 107, 164))),
     PatientSeries(
         month: 2,
         patients: 90,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue)),
+        barColor: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 28, 107, 164))),
     PatientSeries(
         month: 3,
         patients: 80,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue)),
+        barColor: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 28, 107, 164))),
     PatientSeries(
         month: 4,
         patients: 85,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue)),
+        barColor: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 28, 107, 164))),
     PatientSeries(
         month: 5,
         patients: 75,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue)),
+        barColor: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 28, 107, 164))),
   ];
 
   @override
@@ -35,7 +35,10 @@ class ChartScreen extends StatelessWidget {
         appBar:
             SmallHeaderWidget(text: 'Biểu đồ', icon: Icon(Icons.arrow_back)),
         body: Center(
-          child: PatientChart(data: data),
+          child: Padding(
+            padding: EdgeInsets.only(top: 40, bottom: 200),
+            child: PatientChart(data: data),
+          )
         ));
   }
 }

@@ -6,6 +6,8 @@ import '../components/AvatarWidget.dart';
 import '../components/IconButton2.dart';
 import '../components/SearchBar.dart';
 import '../components/TitleText1.dart';
+import 'AddHealthRecord.dart';
+import 'FindPharmacyScreen.dart';
 import 'MedicineSearchScreen.dart';
 import 'package:cvconnect/globals.dart' as globals;
 
@@ -254,7 +256,9 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   );
-                }): Text('Không tìm thấy cuộc hẹn nào')))
+                }): Padding(
+  padding: EdgeInsets.only(left: 40, top: 5),
+                child: Text('Không tìm thấy cuộc hẹn nào'))))
       ]));
 }
 
