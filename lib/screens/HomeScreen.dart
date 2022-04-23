@@ -1,5 +1,6 @@
 import 'package:cvconnect/screens/AddHealthRecord.dart';
 import 'package:cvconnect/components/SearchBar.dart';
+import 'package:cvconnect/screens/ChartScreen.dart';
 import 'package:cvconnect/screens/DoctorsScreen.dart';
 import 'package:flutter/material.dart';
 import '../components/Appointment.dart';
@@ -11,6 +12,8 @@ import 'AddHealthRecord.dart';
 import 'FindPharmacyScreen.dart';
 import 'MedicineSearchScreen.dart';
 import 'package:cvconnect/globals.dart' as globals;
+
+import 'MenuScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -57,6 +60,8 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 100),
             child: GestureDetector(
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MenuScreen())),
               child: AvatarWidget(
                   height: 58,
                   width: 60,
@@ -273,6 +278,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       );
                     })
-                : Text('Không tìm thấy cuộc hẹn nào')))
+                : Padding(
+                    padding: EdgeInsets.only(left: 40, top: 5),
+                    child: Text('Không tìm thấy cuộc hẹn nào')))),
       ]));
 }
